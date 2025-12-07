@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить мероприятие</title>
+</head>
+<body>
+
+<h1>Добавить новое мероприятие</h1>
+
+<!-- Сообщения -->
+<div th:if="${successMessage}" style="padding: 1rem; background-color: #d4edda; border-radius: 5px;">
+    <p th:text="${successMessage}" style="margin: 0; color: #155724;"></p>
+</div>
+
+<div th:if="${errorMessage}" style="padding: 1rem; background-color: #f8d7da; border-radius: 5px;">
+    <p th:text="${errorMessage}" style="margin: 0; color: #721c24;"></p>
+</div>
+
+<!-- Форма -->
+<form th:action="@{/events/add}"
+      th:method="post"
+      th:object="${eventModel}">
+
+    <!-- Название -->
+    <div>
+        <label for="title">
+            Название мероприятия
+            <input th:field="*{title}"
+                   type="text"
+                   id="title"
+                   placeholder="Введите название мероприятия"
+                   required/>
+            <small th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red;"></small>
+        </label>
+    </div>
+
+    <!-- Описание -->
+    <div>
+        <label for="description">
+            Описание
+            <textarea th:field="*{description}"
+                      id="description"
+                      rows="4"
+                      placeholder="Опишите мероприятие..."
+                      required></textarea>
+            <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red;"></small>
+        </label>
+    </div>
+
+    <!-- Дата и время -->
+    <div>
+        <label for="dateTime">
+            Дата и время
+            <input th:field="*{dateTime}"
+                   type="datetime-local"
+                   id="dateTime"
+                   required/>
+            <small th:if="${#fields.hasErrors('dateTime')}" th:errors="*{dateTime}" style="color: red;"></small>
+        </label>
+    </div>
+
+    <!-- Тип мероприятия -->
+    <div>
+        <label for="eventType">
+            Тип мероприятия
+            <select th:field="*{eventType}"
+                    id="eventType"
+                    required>
+                <option value="">-- Выберите тип --</option>
+                <option th:each="type : ${eventTypes}"
+                        th:value="${type}"
+                        th:text="${type}"></option>
+            </select>
+            <small th:if="${#fields.hasErrors('eventType')}" th:errors="*{eventType}" style="color: red;"></small>
+        </label>
+    </div>
+
+    <!-- Зал -->
+    <div>
+        <label for="hallId">
+            Зал
+            <select th:field="*{hallId}"
+                    id="hallId"
+                    required>
+                <option value="">-- Выберите зал --</option>
+                <option th:each="hall : ${availableHalls}"
+                        th:value="${hall.id}"
+                        th:text="${hall.name}"></option>
+            </select>
+            <small th:if="${#fields.hasErrors('hallId')}" th:errors="*{hallId}" style="color: red;"></small>
+        </label>
+    </div>
+
+    <!-- URL изображения -->
+    <div>
+        <label for="imageUrl">
+            Изображение (URL)
+            <input th:field="*{imageUrl}"
+                   type="url"
+                   id="imageUrl"
+                   placeholder="Введите URL изображения"
+                   required/>
+            <small th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" style="color: red;"></small>
+        </label>
+    </div>
+
+    <!-- Количество мест -->
+    <div>
+        <label for="availableSeats">
+            Свободных мест
+            <input th:field="*{availableSeats}"
+                   type="number"
+                   min="1"
+                   id="availableSeats"
+                   placeholder="Введите количество мест"
+                   required/>
+            <small th:if="${#fields.hasErrors('availableSeats')}" th:errors="*{availableSeats}" style="color: red;"></small>
+        </label>
+    </div>
+
+    <!-- Кнопки -->
+    <div>
+        <button type="submit">Добавить мероприятие</button>
+        <a th:href="@{/events/all}">Отмена</a>
+    </div>
+</form>
+
+</body>
+</html>

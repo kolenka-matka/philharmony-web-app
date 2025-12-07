@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все мероприятия</title>
+</head>
+<body>
+<!-- Сообщение об ошибке (ДОБАВЬТЕ ЭТО) -->
+<div th:if="${errorMessage}" style="padding: 1rem; margin-bottom: 1rem; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px;">
+    <p th:text="${errorMessage}" style="margin: 0; color: #721c24;"></p>
+</div>
+
+<!-- Сообщение об успехе (ДОБАВЬТЕ ЭТО) -->
+<div th:if="${successMessage}" style="padding: 1rem; margin-bottom: 1rem; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 5px;">
+    <p th:text="${successMessage}" style="margin: 0; color: #155724;"></p>
+</div>
+
+<h1>Все мероприятия</h1>
+
+<!-- Форма поиска (точно как в примере) -->
+<form method="get" action="/events/all">
+    <div>
+        <input type="search"
+               name="search"
+               placeholder="Поиск по названию..."
+               th:value="${search}">
+        <button type="submit">Искать</button>
+    </div>
+</form>
+
+<!-- Список мероприятий -->
+<div th:each="e : ${eventInfos}" class="card">
+    <!-- Картинка -->
+    <div th:if="${e.imageUrl != null and !e.imageUrl.isEmpty()}">
+        <img th:src="${e.imageUrl}"
+             th:alt="${e.title}"
+             width="200" height="150">
+    </div>
+    <div th:unless="${e.imageUrl != null and !e.imageUrl.isEmpty()}">
+        <img src="/images/default-event.jpg"
+             th:alt="${e.title}"
+             width="200" height="150">
+    </div>
+
+    <h3 th:text="${e.title}"></h3>
+    <p>
+        <strong>Дата и время:</strong>
+        <span th:text="${#temporals.format(e.dateTime, 'dd.MM.yyyy HH:mm')}"></span>
+    </p>
+    <p>
+        <strong>Зал:</strong>
+        <span th:text="${e.hallName}"></span>
+    </p>
+    <p>
+        <strong>Свободных мест:</strong>
+        <span th:text="${e.availableSeats}"></span>
+    </p>
+
+    <a th:href="@{/events/event-details/{title}(title=${e.title})}">Подробнее</a>
+
+    <hr>
+</div>
+
+<!-- Пагинация (точно как в примере) -->
+<nav th:if="${totalPages != null && totalPages > 1}">
+    <ul>
+        <li th:if="${currentPage > 0}">
+            <a th:href="@{/events/all(page=${currentPage - 1}, size=10)}">« Назад</a>
+        </li>
+
+        <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+            <a th:href="@{/events/all(page=${i}, size=10)}"
+               th:text="${i + 1}"
+               th:classappend="${i == currentPage} ? 'active' : ''"></a>
+        </li>
+
+        <li th:if="${currentPage < totalPages - 1}">
+            <a th:href="@{/events/all(page=${currentPage + 1}, size=10)}">Вперёд »</a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Сообщение, если ничего не найдено -->
+<p th:if="${#lists.isEmpty(eventInfos)}">
+    <em>Мероприятия не найдены. Попробуйте изменить критерии поиска!</em>
+</p>
+
+<p>
+    <a th:href="@{/}">Вернуться на главную</a>
+</p>
+
+</body>
+</html>
