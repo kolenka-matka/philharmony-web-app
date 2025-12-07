@@ -7,8 +7,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
 
 public class AddEventDto {
-
-    // Поля БЕЗ аннотаций (как в примере!)
     private String title;
     private String description;
     private LocalDateTime dateTime;
@@ -17,7 +15,6 @@ public class AddEventDto {
     private Integer availableSeats;
     private String hallId;
 
-    // Аннотации на ГЕТТЕРАХ (как в примере!)
 
     @NotEmpty(message = "Название события не должно быть пустым!")
     @Size(min = 2, max = 50, message = "Название должно быть от 2 до 50 символов!")
@@ -78,7 +75,6 @@ public class AddEventDto {
         this.availableSeats = availableSeats;
     }
 
-    // Внимание: В примере companyName, у вас hallId
     @NotNull(message = "Зал обязателен!")
     public String getHallId() {
         return hallId;

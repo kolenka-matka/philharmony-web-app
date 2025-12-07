@@ -9,11 +9,8 @@ public class ShowEventInfoDto {
     private Integer availableSeats;
     private String imageUrl;
 
-
-    // Конструктор по умолчанию
     public ShowEventInfoDto() {}
 
-    // Геттеры и сеттеры
     public String getTitle() {
         return title;
     }

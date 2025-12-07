@@ -126,7 +126,6 @@ public class EventServiceImpl implements EventService {
         event.setImageUrl(dto.getImageUrl());
         event.setAvailableSeats(dto.getAvailableSeats());
 
-        // Сохраняем зал
         Hall hall = hallRepository.findById(String.valueOf(dto.getHallId()))
                 .orElseThrow(() -> new IllegalArgumentException("Зал не найден"));
 
@@ -140,7 +139,6 @@ public class EventServiceImpl implements EventService {
     public void deleteEvent(String eventTitle) {
         log.debug("Удаление мероприятия: {}", eventTitle);
 
-        // Найти мероприятие
         Event event = eventRepository.findByTitle(eventTitle)
                 .orElseThrow(() -> new IllegalArgumentException("Мероприятие не найдено"));
 

@@ -13,6 +13,5 @@ public interface HallRepository extends JpaRepository<Hall, String> {
     List<Hall> findByAddressContainingIgnoreCase(String address);
     boolean existsByName(String name);
 
-    // Залы с вместимостью больше указанной
     List<Hall> findByCapacityGreaterThan(Integer minCapacity);
 }

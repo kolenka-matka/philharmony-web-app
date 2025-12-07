@@ -38,7 +38,6 @@ public class EventController {
     public String addEvent(Model model) {
         log.debug("Отображение формы добавления мероприятия");
 
-        // ТОЧНО КАК В ПРИМЕРЕ С СОТРУДНИКАМИ
         model.addAttribute("availableHalls", hallService.getAllHalls());
         model.addAttribute("eventTypes", EventType.values());
 
@@ -56,11 +55,9 @@ public class EventController {
                            RedirectAttributes redirectAttributes) {
         log.debug("Обработка POST запроса на добавление мероприятия");
 
-        // ТОЧНО КАК В ПРИМЕРЕ С СОТРУДНИКАМИ
         if (bindingResult.hasErrors()) {
             log.warn("Ошибки валидации при добавлении мероприятия: {}", bindingResult.getAllErrors());
 
-            // ВАЖНО: добавляем списки в flash attributes при ошибке
             redirectAttributes.addFlashAttribute("availableHalls", hallService.getAllHalls());
             redirectAttributes.addFlashAttribute("eventTypes", EventType.values());
             redirectAttributes.addFlashAttribute("eventModel", eventModel);
@@ -78,7 +75,6 @@ public class EventController {
         } catch (IllegalArgumentException e) {
             log.error("Ошибка при добавлении мероприятия: {}", e.getMessage());
 
-            // Добавляем списки при ошибке бизнес-логики тоже
             redirectAttributes.addFlashAttribute("availableHalls", hallService.getAllHalls());
             redirectAttributes.addFlashAttribute("eventTypes", EventType.values());
             redirectAttributes.addFlashAttribute("eventModel", eventModel);

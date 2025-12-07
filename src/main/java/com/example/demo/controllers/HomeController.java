@@ -11,6 +11,6 @@ public class HomeController {
     @GetMapping("/")
     public String homePage() {
         log.debug("Отображение главной страницы");
-        return "index"; // thymeleaf: templates/index.html
+        return "index";
     }
 }

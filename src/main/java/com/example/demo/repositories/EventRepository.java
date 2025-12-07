@@ -18,13 +18,10 @@ public interface EventRepository extends JpaRepository<Event, String> {
     // Будущие мероприятия определенного типа
     List<Event> findByEventTypeAndDateTimeAfter(EventType eventType, LocalDateTime dateTime);
 
-    // Все мероприятия определенного типа
     List<Event> findByEventType(EventType eventType);
 
-    // Поиск по названию
     List<Event> findByTitleContainingIgnoreCase(String title);
 
-    // Поиск по типу и названию
     List<Event> findByEventTypeAndTitleContainingIgnoreCase(EventType eventType, String title);
 
     // Прошедшие мероприятия
