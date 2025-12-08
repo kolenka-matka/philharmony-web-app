@@ -1,13 +1,14 @@
 package com.example.demo.services;
 
-import com.example.demo.controllers.EventController;
 import com.example.demo.dto.AddEventDto;
 import com.example.demo.dto.ShowEventInfoDto;
 import com.example.demo.dto.ShowDetailedEventInfoDto;
 import com.example.demo.models.entities.Event;
 import com.example.demo.models.entities.Hall;
+import com.example.demo.models.enums.EventType;
 import com.example.demo.repositories.EventRepository;
 import com.example.demo.repositories.HallRepository;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,68 +26,45 @@ public class EventServiceImpl implements EventService {
 
     private final EventRepository eventRepository;
     private final HallRepository hallRepository;
-    private static final Logger log = LoggerFactory.getLogger(EventController.class);
+    private final ModelMapper mapper;
 
-    public EventServiceImpl(EventRepository eventRepository, HallRepository hallRepository) {
+    private static final Logger log = LoggerFactory.getLogger(EventServiceImpl.class);
+
+    public EventServiceImpl(EventRepository eventRepository,
+                            HallRepository hallRepository,
+                            ModelMapper mapper) {
         this.eventRepository = eventRepository;
         this.hallRepository = hallRepository;
+        this.mapper = mapper;
     }
 
     @Override
     public List<ShowEventInfoDto> allEvents() {
-        List<Event> events = eventRepository.findAll();
-        return events.stream().map(event -> {
-            ShowEventInfoDto dto = new ShowEventInfoDto();
-            dto.setTitle(event.getTitle());
-            dto.setDateTime(event.getDateTime());
-            dto.setAvailableSeats(event.getAvailableSeats());
-            dto.setImageUrl(event.getImageUrl());
-
-            if (event.getHall() != null) {
-                dto.setHallName(event.getHall().getName());
-            } else {
-                dto.setHallName("Не указан");
-            }
-            return dto;
-        }).collect(Collectors.toList());
+        return eventRepository.findAll()
+                .stream()
+                .map(this::toShowEventInfoDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Page<ShowEventInfoDto> allEventsPaginated(Pageable pageable) {
         return eventRepository.findAll(pageable)
-                .map(event -> {
-                    ShowEventInfoDto dto = new ShowEventInfoDto();
-                    dto.setTitle(event.getTitle());
-                    dto.setDateTime(event.getDateTime());
-                    dto.setAvailableSeats(event.getAvailableSeats());
-                    dto.setImageUrl(event.getImageUrl());
-
-                    if (event.getHall() != null) {
-                        dto.setHallName(event.getHall().getName());
-                    } else {
-                        dto.setHallName("Не указан");
-                    }
-                    return dto;
-                });
+                .map(this::toShowEventInfoDto);
     }
 
     @Override
     public List<ShowEventInfoDto> searchEvents(String search) {
-        return eventRepository.findByTitleContainingIgnoreCase(search).stream()
-                .map(event -> {
-                    ShowEventInfoDto dto = new ShowEventInfoDto();
-                    dto.setTitle(event.getTitle());
-                    dto.setDateTime(event.getDateTime());
-                    dto.setAvailableSeats(event.getAvailableSeats());
-                    dto.setImageUrl(event.getImageUrl());
+        return eventRepository.findByTitleContainingIgnoreCase(search)
+                .stream()
+                .map(this::toShowEventInfoDto)
+                .collect(Collectors.toList());
+    }
 
-                    if (event.getHall() != null) {
-                        dto.setHallName(event.getHall().getName());
-                    } else {
-                        dto.setHallName("Не указан");
-                    }
-                    return dto;
-                })
+    @Override
+    public List<ShowEventInfoDto> findByEventType(EventType type) {
+        return eventRepository.findByEventType(type)
+                .stream()
+                .map(this::toShowEventInfoDto)
                 .collect(Collectors.toList());
     }
 
@@ -95,24 +73,7 @@ public class EventServiceImpl implements EventService {
         Event event = eventRepository.findByTitle(eventTitle)
                 .orElseThrow(() -> new IllegalArgumentException("Мероприятие не найдено: " + eventTitle));
 
-        ShowDetailedEventInfoDto dto = new ShowDetailedEventInfoDto();
-        dto.setTitle(event.getTitle());
-        dto.setDescription(event.getDescription());
-        dto.setDateTime(event.getDateTime());
-        dto.setAvailableSeats(event.getAvailableSeats());
-        dto.setImageUrl(event.getImageUrl());
-
-        if (event.getHall() != null) {
-            dto.setHallName(event.getHall().getName());
-            dto.setHallAddress(event.getHall().getAddress());
-            dto.setCapacity(event.getHall().getCapacity());
-        } else {
-            dto.setHallName("Не указан");
-            dto.setHallAddress("Не указан");
-            dto.setCapacity(0);
-        }
-
-        return dto;
+        return toShowDetailedEventInfoDto(event);
     }
 
     @Override
@@ -132,26 +93,49 @@ public class EventServiceImpl implements EventService {
         event.setHall(hall);
 
         eventRepository.save(event);
+        log.info("Мероприятие '{}' добавлено", dto.getTitle());
     }
 
     @Override
     @Transactional
     public void deleteEvent(String eventTitle) {
-        log.debug("Удаление мероприятия: {}", eventTitle);
-
         Event event = eventRepository.findByTitle(eventTitle)
                 .orElseThrow(() -> new IllegalArgumentException("Мероприятие не найдено"));
 
         try {
             eventRepository.delete(event);
-            log.info("Мероприятие успешно удалено: {}", eventTitle);
-        } catch (DataIntegrityViolationException e) {
-            log.warn("Нельзя удалить мероприятие '{}'. Есть связанные бронирования", eventTitle);
+            log.info("Мероприятие '{}' удалено", eventTitle);
+        } catch (DataIntegrityViolationException ex) {
             throw new IllegalArgumentException(
                     "Нельзя удалить мероприятие '" + eventTitle +
-                            "'. Существуют связанные бронирования. Сначала удалите все бронирования."
+                            "'. Есть связанные бронирования. Сначала удалите их."
             );
         }
     }
 
+    private ShowEventInfoDto toShowEventInfoDto(Event event) {
+        ShowEventInfoDto dto = mapper.map(event, ShowEventInfoDto.class);
+        if (event.getHall() != null) {
+            dto.setHallName(event.getHall().getName());
+        } else {
+            dto.setHallName("Не указан");
+        }
+
+        return dto;
+    }
+
+    private ShowDetailedEventInfoDto toShowDetailedEventInfoDto(Event event) {
+        ShowDetailedEventInfoDto dto = mapper.map(event, ShowDetailedEventInfoDto.class);
+        if (event.getHall() != null) {
+            dto.setHallName(event.getHall().getName());
+            dto.setHallAddress(event.getHall().getAddress());
+            dto.setCapacity(event.getHall().getCapacity());
+        } else {
+            dto.setHallName("Не указан");
+            dto.setHallAddress("Не указан");
+            dto.setCapacity(0);
+        }
+
+        return dto;
+    }
 }

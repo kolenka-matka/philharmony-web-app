@@ -2,12 +2,14 @@ package com.example.demo.controllers;
 
 import com.example.demo.dto.AddEventDto;
 import com.example.demo.dto.ShowEventInfoDto;
-import com.example.demo.models.entities.Hall;
 import com.example.demo.models.enums.EventType;
 import com.example.demo.services.EventService;
+import com.example.demo.services.EventServiceImpl;
 import com.example.demo.services.HallService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,8 +21,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import java.util.List;
-
 @Slf4j
 @Controller
 @RequestMapping("/events")
@@ -28,6 +28,8 @@ public class EventController {
 
     private final EventService eventService;
     private final HallService hallService;
+    private static final Logger log = LoggerFactory.getLogger(EventServiceImpl.class);
+
 
     public EventController(EventService eventService, HallService hallService) {
         this.eventService = eventService;
@@ -92,23 +94,36 @@ public class EventController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "title") String sortBy,
             @RequestParam(required = false) String search,
+            @RequestParam(required = false) EventType type,
             Model model) {
 
         log.debug("Отображение списка мероприятий: страница={}, размер={}, сортировка={}, поиск={}",
                 page, size, sortBy, search);
 
-        if (search != null && !search.trim().isEmpty()) {
+        model.addAttribute("eventTypes", EventType.values()); // для фильтра
+
+        // поиск
+        if (search != null && !search.isBlank()) {
             model.addAttribute("eventInfos", eventService.searchEvents(search));
             model.addAttribute("search", search);
-        } else {
-            Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
-            Page<ShowEventInfoDto> eventPage = eventService.allEventsPaginated(pageable);
-
-            model.addAttribute("eventInfos", eventPage.getContent());
-            model.addAttribute("currentPage", page);
-            model.addAttribute("totalPages", eventPage.getTotalPages());
-            model.addAttribute("totalItems", eventPage.getTotalElements());
+            return "event-all";
         }
+
+        // фильтрация
+        if (type != null) {
+            model.addAttribute("eventInfos", eventService.findByEventType(type));
+            model.addAttribute("selectedType", type);
+            return "event-all";
+        }
+
+        // пагинация
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
+        Page<ShowEventInfoDto> eventPage = eventService.allEventsPaginated(pageable);
+
+        model.addAttribute("eventInfos", eventPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", eventPage.getTotalPages());
+        model.addAttribute("totalItems", eventPage.getTotalElements());
 
         return "event-all";
     }

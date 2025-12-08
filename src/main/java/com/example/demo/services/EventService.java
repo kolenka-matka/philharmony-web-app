@@ -3,6 +3,7 @@ package com.example.demo.services;
 import com.example.demo.dto.AddEventDto;
 import com.example.demo.dto.ShowEventInfoDto;
 import com.example.demo.dto.ShowDetailedEventInfoDto;
+import com.example.demo.models.enums.EventType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,7 @@ public interface EventService {
     void addEvent(AddEventDto dto);
     Page<ShowEventInfoDto> allEventsPaginated(Pageable pageable);
     List<ShowEventInfoDto> searchEvents(String search);
+    List<ShowEventInfoDto> findByEventType(EventType type);
 
     @Transactional
     void deleteEvent(String eventTitle);

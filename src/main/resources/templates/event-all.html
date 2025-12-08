@@ -5,19 +5,18 @@
     <title>Все мероприятия</title>
 </head>
 <body>
-<!-- Сообщение об ошибке (ДОБАВЬТЕ ЭТО) -->
+<!-- Сообщение об ошибке-->
 <div th:if="${errorMessage}" style="padding: 1rem; margin-bottom: 1rem; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px;">
     <p th:text="${errorMessage}" style="margin: 0; color: #721c24;"></p>
 </div>
 
-<!-- Сообщение об успехе (ДОБАВЬТЕ ЭТО) -->
+<!-- Сообщение об успехе -->
 <div th:if="${successMessage}" style="padding: 1rem; margin-bottom: 1rem; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 5px;">
     <p th:text="${successMessage}" style="margin: 0; color: #155724;"></p>
 </div>
 
 <h1>Все мероприятия</h1>
 
-<!-- Форма поиска (точно как в примере) -->
 <form method="get" action="/events/all">
     <div>
         <input type="search"
@@ -25,6 +24,18 @@
                placeholder="Поиск по названию..."
                th:value="${search}">
         <button type="submit">Искать</button>
+    </div>
+    <div style="margin-top: 10px;">
+        <select name="type" id="typeFilter">
+            <option value="">Все мероприятия</option>
+            <option th:each="eventType : ${eventTypes}"
+                    th:value="${eventType}"
+                    th:text="${eventType}"
+                    th:selected="${selectedType == eventType}">
+            </option>
+        </select>
+        <button type="submit">Применить фильтр</button>
+        <a th:href="@{/events/all}" style="margin-left: 10px;">Сбросить фильтр</a>
     </div>
 </form>
 
@@ -61,7 +72,7 @@
     <hr>
 </div>
 
-<!-- Пагинация (точно как в примере) -->
+<!-- Пагинация -->
 <nav th:if="${totalPages != null && totalPages > 1}">
     <ul>
         <li th:if="${currentPage > 0}">
