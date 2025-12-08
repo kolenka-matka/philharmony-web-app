@@ -1,9 +1,11 @@
 package com.example.demo.dto;
 
 import com.example.demo.models.enums.EventType;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ShowDetailedEventInfoDto {
+public class ShowDetailedEventInfoDto implements Serializable {
     private String title;
     private String description;
     private LocalDateTime dateTime;

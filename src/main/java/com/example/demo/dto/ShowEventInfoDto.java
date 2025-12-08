@@ -1,8 +1,9 @@
 package com.example.demo.dto;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ShowEventInfoDto {
+public class ShowEventInfoDto implements Serializable {
     private String title;
     private LocalDateTime dateTime;
     private String hallName;

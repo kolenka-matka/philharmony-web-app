@@ -14,6 +14,8 @@ import com.example.demo.repositories.specifications.EventSpecification;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -46,6 +48,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Cacheable(value = "events", key = "'all'", unless = "#result.isEmpty()")
     public List<ShowEventInfoDto> allEvents() {
         return eventRepository.findAll()
                 .stream()
@@ -68,6 +71,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Cacheable(value = "events", key = "'type_' + #type")
     public List<ShowEventInfoDto> findByEventType(EventType type) {
         return eventRepository.findByEventType(type)
                 .stream()
@@ -85,6 +89,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Cacheable(value = "events", key = "'genre_' + #genreName")
     public List<ShowEventInfoDto> findByGenreName(String genreName) {
         Specification<Event> spec = EventSpecification.hasGenreName(genreName);
         return eventRepository.findAll(spec)
@@ -94,14 +99,15 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Cacheable(value = "event", key = "#eventTitle", unless = "#result == null")
     public ShowDetailedEventInfoDto eventDetails(String eventTitle) {
+        log.debug("Получение деталей мероприятия: {}", eventTitle);
         Event event = eventRepository.findByTitle(eventTitle)
                 .orElseThrow(() -> new IllegalArgumentException("Мероприятие не найдено: " + eventTitle));
 
         return toShowDetailedEventInfoDto(event);
     }
 
-    // НОВЫЕ МЕТОДЫ ДЛЯ КОМБИНИРОВАННЫХ ФИЛЬТРОВ
     @Override
     public List<ShowEventInfoDto> findEventsWithFilters(String search, EventType type, String genreName) {
         Specification<Event> spec = Specification.where(EventSpecification.hasTitleContaining(search))
@@ -126,6 +132,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = "event", allEntries = true)
     public void addEvent(AddEventDto dto) {
         Event event = new Event();
         event.setTitle(dto.getTitle());
@@ -151,6 +158,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = "event", allEntries = true)
     public void deleteEvent(String eventTitle) {
         Event event = eventRepository.findByTitle(eventTitle)
                 .orElseThrow(() -> new IllegalArgumentException("Мероприятие не найдено"));
