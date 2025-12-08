@@ -18,12 +18,18 @@ public class Event extends BaseEntity {
 
     @Column(nullable = false)
     private LocalDateTime dateTime;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "event_type", nullable = false)
     private EventType eventType = EventType.CONCERT;
 
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
+
     @Column(name = "image_url", length = 1000)
     private String imageUrl;
+
     @ManyToOne
     @JoinColumn(name = "hall_id")
     private Hall hall;
@@ -42,6 +48,7 @@ public class Event extends BaseEntity {
     @OneToMany(mappedBy = "event")
     private List<Booking> bookings = new ArrayList<>();
 
+    // Геттеры
     public String getTitle() { return title; }
     public String getDescription() { return description; }
     public LocalDateTime getDateTime() { return dateTime; }
@@ -49,10 +56,11 @@ public class Event extends BaseEntity {
     public Integer getAvailableSeats() { return availableSeats; }
     public List<Performer> getPerformers() { return performers; }
     public List<Booking> getBookings() { return bookings; }
-    public String getImageUrl() {return imageUrl;}
-
+    public String getImageUrl() { return imageUrl; }
     public EventType getEventType() { return eventType; }
+    public Genre getGenre() { return genre; }
 
+    // Сеттеры
     public void setTitle(String title) { this.title = title; }
     public void setDescription(String description) { this.description = description; }
     public void setDateTime(LocalDateTime dateTime) { this.dateTime = dateTime; }
@@ -60,6 +68,6 @@ public class Event extends BaseEntity {
     public void setAvailableSeats(Integer availableSeats) { this.availableSeats = availableSeats; }
     public void setPerformers(List<Performer> performers) { this.performers = performers; }
     public void setEventType(EventType eventType) { this.eventType = eventType; }
-    public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
-
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public void setGenre(Genre genre) { this.genre = genre; }
 }

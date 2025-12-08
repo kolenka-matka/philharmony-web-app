@@ -4,9 +4,11 @@ import com.example.demo.dto.AddEventDto;
 import com.example.demo.dto.ShowEventInfoDto;
 import com.example.demo.dto.ShowDetailedEventInfoDto;
 import com.example.demo.models.entities.Event;
+import com.example.demo.models.entities.Genre;
 import com.example.demo.models.entities.Hall;
 import com.example.demo.models.enums.EventType;
 import com.example.demo.repositories.EventRepository;
+import com.example.demo.repositories.GenreRepository;
 import com.example.demo.repositories.HallRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -26,15 +28,19 @@ public class EventServiceImpl implements EventService {
 
     private final EventRepository eventRepository;
     private final HallRepository hallRepository;
+    private final GenreRepository genreRepository; // ДОБАВИТЬ
     private final ModelMapper mapper;
 
     private static final Logger log = LoggerFactory.getLogger(EventServiceImpl.class);
 
+    // ДОБАВИТЬ GenreRepository в конструктор
     public EventServiceImpl(EventRepository eventRepository,
                             HallRepository hallRepository,
+                            GenreRepository genreRepository,
                             ModelMapper mapper) {
         this.eventRepository = eventRepository;
         this.hallRepository = hallRepository;
+        this.genreRepository = genreRepository;
         this.mapper = mapper;
     }
 
@@ -68,6 +74,23 @@ public class EventServiceImpl implements EventService {
                 .collect(Collectors.toList());
     }
 
+    // ДОБАВИТЬ новые методы для фильтрации по жанру
+    @Override
+    public List<ShowEventInfoDto> findByGenreId(String genreId) {
+        return eventRepository.findByGenreId(genreId)
+                .stream()
+                .map(this::toShowEventInfoDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ShowEventInfoDto> findByGenreName(String genreName) {
+        return eventRepository.findByGenreName(genreName)
+                .stream()
+                .map(this::toShowEventInfoDto)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public ShowDetailedEventInfoDto eventDetails(String eventTitle) {
         Event event = eventRepository.findByTitle(eventTitle)
@@ -87,10 +110,17 @@ public class EventServiceImpl implements EventService {
         event.setImageUrl(dto.getImageUrl());
         event.setAvailableSeats(dto.getAvailableSeats());
 
+        // Зал
         Hall hall = hallRepository.findById(String.valueOf(dto.getHallId()))
                 .orElseThrow(() -> new IllegalArgumentException("Зал не найден"));
-
         event.setHall(hall);
+
+        // Жанр (если указан)
+        if (dto.getGenreId() != null && !dto.getGenreId().isEmpty()) {
+            Genre genre = genreRepository.findById(dto.getGenreId())
+                    .orElseThrow(() -> new IllegalArgumentException("Жанр не найден"));
+            event.setGenre(genre);
+        }
 
         eventRepository.save(event);
         log.info("Мероприятие '{}' добавлено", dto.getTitle());
@@ -115,10 +145,19 @@ public class EventServiceImpl implements EventService {
 
     private ShowEventInfoDto toShowEventInfoDto(Event event) {
         ShowEventInfoDto dto = mapper.map(event, ShowEventInfoDto.class);
+
+        // Зал
         if (event.getHall() != null) {
             dto.setHallName(event.getHall().getName());
         } else {
             dto.setHallName("Не указан");
+        }
+
+        // Жанр
+        if (event.getGenre() != null) {
+            dto.setGenreName(event.getGenre().getName());
+        } else {
+            dto.setGenreName("Не указан");
         }
 
         return dto;
@@ -126,6 +165,8 @@ public class EventServiceImpl implements EventService {
 
     private ShowDetailedEventInfoDto toShowDetailedEventInfoDto(Event event) {
         ShowDetailedEventInfoDto dto = mapper.map(event, ShowDetailedEventInfoDto.class);
+
+        // Зал
         if (event.getHall() != null) {
             dto.setHallName(event.getHall().getName());
             dto.setHallAddress(event.getHall().getAddress());
@@ -134,6 +175,13 @@ public class EventServiceImpl implements EventService {
             dto.setHallName("Не указан");
             dto.setHallAddress("Не указан");
             dto.setCapacity(0);
+        }
+
+        // Жанр
+        if (event.getGenre() != null) {
+            dto.setGenreName(event.getGenre().getName());
+        } else {
+            dto.setGenreName("Не указан");
         }
 
         return dto;

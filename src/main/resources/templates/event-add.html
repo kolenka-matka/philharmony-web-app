@@ -75,6 +75,16 @@
             <small th:if="${#fields.hasErrors('eventType')}" th:errors="*{eventType}" style="color: red;"></small>
         </label>
     </div>
+    <div>
+        <label for="genreId">Жанр:</label>
+        <select id="genreId" name="genreId">
+            <option value="">Без жанра</option>
+            <option th:each="genre : ${genres}"
+                    th:value="${genre.id}"
+                    th:text="${genre.name}">
+            </option>
+        </select>
+    </div>
 
     <!-- Зал -->
     <div>

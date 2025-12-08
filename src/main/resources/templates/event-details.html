@@ -29,6 +29,11 @@
 <p><strong>Адрес зала:</strong> <span th:text="${eventDetails.hallAddress}"></span></p>
 <p><strong>Вместимость зала:</strong> <span th:text="${eventDetails.capacity}"></span> мест</p>
 <p><strong>Свободных мест:</strong> <span th:text="${eventDetails.availableSeats}"></span></p>
+
+<p th:if="${eventDetails.genreName}">
+    <strong>Жанр:</strong> <span th:text="${eventDetails.genreName}"></span>
+</p>
+
 <div>
     <a th:href="@{/events/event-delete/{event-title}(event-title=${eventDetails.title})}"
        role="button"

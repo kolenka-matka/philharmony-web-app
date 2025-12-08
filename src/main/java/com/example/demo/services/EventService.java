@@ -21,4 +21,7 @@ public interface EventService {
 
     @Transactional
     void deleteEvent(String eventTitle);
+
+    List<ShowEventInfoDto> findByGenreId(String genreId);
+    List<ShowEventInfoDto> findByGenreName(String genreName);
 }

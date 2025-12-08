@@ -4,7 +4,7 @@ import com.example.demo.dto.AddEventDto;
 import com.example.demo.dto.ShowEventInfoDto;
 import com.example.demo.models.enums.EventType;
 import com.example.demo.services.EventService;
-import com.example.demo.services.EventServiceImpl;
+import com.example.demo.services.GenreService;
 import com.example.demo.services.HallService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -28,12 +28,14 @@ public class EventController {
 
     private final EventService eventService;
     private final HallService hallService;
-    private static final Logger log = LoggerFactory.getLogger(EventServiceImpl.class);
+    private final GenreService genreService;
 
-
-    public EventController(EventService eventService, HallService hallService) {
+    public EventController(EventService eventService,
+                           HallService hallService,
+                           GenreService genreService) {
         this.eventService = eventService;
         this.hallService = hallService;
+        this.genreService = genreService;
     }
 
     @GetMapping("/add")
@@ -42,6 +44,7 @@ public class EventController {
 
         model.addAttribute("availableHalls", hallService.getAllHalls());
         model.addAttribute("eventTypes", EventType.values());
+        model.addAttribute("genres", genreService.getAllGenres());
 
         return "event-add";
     }
@@ -62,6 +65,7 @@ public class EventController {
 
             redirectAttributes.addFlashAttribute("availableHalls", hallService.getAllHalls());
             redirectAttributes.addFlashAttribute("eventTypes", EventType.values());
+            redirectAttributes.addFlashAttribute("genres", genreService.getAllGenres());
             redirectAttributes.addFlashAttribute("eventModel", eventModel);
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.eventModel",
@@ -79,6 +83,7 @@ public class EventController {
 
             redirectAttributes.addFlashAttribute("availableHalls", hallService.getAllHalls());
             redirectAttributes.addFlashAttribute("eventTypes", EventType.values());
+            redirectAttributes.addFlashAttribute("genres", genreService.getAllGenres());
             redirectAttributes.addFlashAttribute("eventModel", eventModel);
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 
@@ -95,12 +100,14 @@ public class EventController {
             @RequestParam(defaultValue = "title") String sortBy,
             @RequestParam(required = false) String search,
             @RequestParam(required = false) EventType type,
+            @RequestParam(required = false) String genre,
             Model model) {
 
         log.debug("Отображение списка мероприятий: страница={}, размер={}, сортировка={}, поиск={}",
                 page, size, sortBy, search);
 
-        model.addAttribute("eventTypes", EventType.values()); // для фильтра
+        model.addAttribute("eventTypes", EventType.values());
+        model.addAttribute("genres", genreService.getAllGenres());
 
         // поиск
         if (search != null && !search.isBlank()) {
@@ -109,10 +116,17 @@ public class EventController {
             return "event-all";
         }
 
-        // фильтрация
+        // фильтрация по типу мероприятия
         if (type != null) {
             model.addAttribute("eventInfos", eventService.findByEventType(type));
             model.addAttribute("selectedType", type);
+            return "event-all";
+        }
+
+        // фильтрация по жанру
+        if (genre != null && !genre.isBlank()) {
+            model.addAttribute("eventInfos", eventService.findByGenreName(genre));
+            model.addAttribute("selectedGenre", genre);
             return "event-all";
         }
 

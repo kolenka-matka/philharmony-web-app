@@ -14,7 +14,7 @@ public class AddEventDto {
     private String imageUrl;
     private Integer availableSeats;
     private String hallId;
-
+    private String genreId;
 
     @NotEmpty(message = "Название события не должно быть пустым!")
     @Size(min = 2, max = 50, message = "Название должно быть от 2 до 50 символов!")
@@ -82,5 +82,13 @@ public class AddEventDto {
 
     public void setHallId(String hallId) {
         this.hallId = hallId;
+    }
+
+    public String getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(String genreId) {
+        this.genreId = genreId;
     }
 }

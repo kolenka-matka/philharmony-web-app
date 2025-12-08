@@ -8,6 +8,7 @@ public class ShowEventInfoDto {
     private String hallName;
     private Integer availableSeats;
     private String imageUrl;
+    private String genreName;
 
     public ShowEventInfoDto() {}
 
@@ -43,7 +44,15 @@ public class ShowEventInfoDto {
         this.availableSeats = availableSeats;
     }
 
-    public String getImageUrl() {return imageUrl;}
+    public String getImageUrl() { return imageUrl; }
 
-    public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+    public String getGenreName() {
+        return genreName;
+    }
+
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
+    }
 }

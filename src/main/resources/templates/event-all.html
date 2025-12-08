@@ -27,14 +27,24 @@
     </div>
     <div style="margin-top: 10px;">
         <select name="type" id="typeFilter">
-            <option value="">Все мероприятия</option>
+            <option value="">Все типы</option>
             <option th:each="eventType : ${eventTypes}"
                     th:value="${eventType}"
                     th:text="${eventType}"
                     th:selected="${selectedType == eventType}">
             </option>
         </select>
-        <button type="submit">Применить фильтр</button>
+
+        <select name="genre" id="genreFilter">
+            <option value="">Все жанры</option>
+            <option th:each="genre : ${genres}"
+                    th:value="${genre.name}"
+                    th:text="${genre.name}"
+                    th:selected="${selectedGenre == genre.name}">
+            </option>
+        </select>
+
+        <button type="submit" style="margin-left: 10px;">Применить фильтр</button>
         <a th:href="@{/events/all}" style="margin-left: 10px;">Сбросить фильтр</a>
     </div>
 </form>

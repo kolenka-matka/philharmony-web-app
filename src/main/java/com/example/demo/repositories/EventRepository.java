@@ -2,7 +2,9 @@ package com.example.demo.repositories;
 
 import com.example.demo.models.entities.Event;
 import com.example.demo.models.enums.EventType;
+import io.lettuce.core.dynamic.annotation.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -35,4 +37,8 @@ public interface EventRepository extends JpaRepository<Event, String> {
     boolean existsByTitle(String title);
 
     void deleteByTitle(String title);
+
+    List<Event> findByGenreId(String genreId);
+
+    List<Event> findByGenreName(String genreName);
 }

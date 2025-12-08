@@ -1,7 +1,6 @@
 package com.example.demo.dto;
 
 import com.example.demo.models.enums.EventType;
-
 import java.time.LocalDateTime;
 
 public class ShowDetailedEventInfoDto {
@@ -14,6 +13,7 @@ public class ShowDetailedEventInfoDto {
     private Integer availableSeats;
     private String imageUrl;
     private EventType eventType;
+    private String genreName;
 
     public String getTitle() {
         return title;
@@ -81,4 +81,12 @@ public class ShowDetailedEventInfoDto {
 
     public EventType getEventType() { return eventType; }
     public void setEventType(EventType eventType) { this.eventType = eventType; }
+
+    public String getGenreName() {
+        return genreName;
+    }
+
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
+    }
 }
