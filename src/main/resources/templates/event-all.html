@@ -86,17 +86,24 @@
 <nav th:if="${totalPages != null && totalPages > 1}">
     <ul>
         <li th:if="${currentPage > 0}">
-            <a th:href="@{/events/all(page=${currentPage - 1}, size=10)}">« Назад</a>
+            <a th:href="@{/events/all(page=${currentPage - 1}, size=10,
+                         search=${search}, type=${selectedType}, genre=${selectedGenre})}">
+                « Назад
+            </a>
         </li>
 
         <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
-            <a th:href="@{/events/all(page=${i}, size=10)}"
+            <a th:href="@{/events/all(page=${i}, size=10,
+                         search=${search}, type=${selectedType}, genre=${selectedGenre})}"
                th:text="${i + 1}"
                th:classappend="${i == currentPage} ? 'active' : ''"></a>
         </li>
 
         <li th:if="${currentPage < totalPages - 1}">
-            <a th:href="@{/events/all(page=${currentPage + 1}, size=10)}">Вперёд »</a>
+            <a th:href="@{/events/all(page=${currentPage + 1}, size=10,
+                         search=${search}, type=${selectedType}, genre=${selectedGenre})}">
+                Вперёд »
+            </a>
         </li>
     </ul>
 </nav>

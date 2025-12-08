@@ -6,22 +6,22 @@ import com.example.demo.dto.ShowDetailedEventInfoDto;
 import com.example.demo.models.enums.EventType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface EventService {
-
     List<ShowEventInfoDto> allEvents();
-    ShowDetailedEventInfoDto eventDetails(String eventTitle);
-    void addEvent(AddEventDto dto);
     Page<ShowEventInfoDto> allEventsPaginated(Pageable pageable);
     List<ShowEventInfoDto> searchEvents(String search);
     List<ShowEventInfoDto> findByEventType(EventType type);
-
-    @Transactional
-    void deleteEvent(String eventTitle);
-
     List<ShowEventInfoDto> findByGenreId(String genreId);
     List<ShowEventInfoDto> findByGenreName(String genreName);
+    ShowDetailedEventInfoDto eventDetails(String eventTitle);
+
+    // НОВЫЕ МЕТОДЫ ДЛЯ ФИЛЬТРАЦИИ
+    List<ShowEventInfoDto> findEventsWithFilters(String search, EventType type, String genreName);
+    Page<ShowEventInfoDto> findEventsWithFiltersPaginated(String search, EventType type, String genreName, Pageable pageable);
+
+    void addEvent(AddEventDto dto);
+    void deleteEvent(String eventTitle);
 }

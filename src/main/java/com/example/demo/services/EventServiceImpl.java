@@ -10,11 +10,13 @@ import com.example.demo.models.enums.EventType;
 import com.example.demo.repositories.EventRepository;
 import com.example.demo.repositories.GenreRepository;
 import com.example.demo.repositories.HallRepository;
+import com.example.demo.repositories.specifications.EventSpecification;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -28,12 +30,11 @@ public class EventServiceImpl implements EventService {
 
     private final EventRepository eventRepository;
     private final HallRepository hallRepository;
-    private final GenreRepository genreRepository; // ДОБАВИТЬ
+    private final GenreRepository genreRepository;
     private final ModelMapper mapper;
 
     private static final Logger log = LoggerFactory.getLogger(EventServiceImpl.class);
 
-    // ДОБАВИТЬ GenreRepository в конструктор
     public EventServiceImpl(EventRepository eventRepository,
                             HallRepository hallRepository,
                             GenreRepository genreRepository,
@@ -74,10 +75,10 @@ public class EventServiceImpl implements EventService {
                 .collect(Collectors.toList());
     }
 
-    // ДОБАВИТЬ новые методы для фильтрации по жанру
     @Override
     public List<ShowEventInfoDto> findByGenreId(String genreId) {
-        return eventRepository.findByGenreId(genreId)
+        Specification<Event> spec = EventSpecification.hasGenreId(genreId);
+        return eventRepository.findAll(spec)
                 .stream()
                 .map(this::toShowEventInfoDto)
                 .collect(Collectors.toList());
@@ -85,7 +86,8 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<ShowEventInfoDto> findByGenreName(String genreName) {
-        return eventRepository.findByGenreName(genreName)
+        Specification<Event> spec = EventSpecification.hasGenreName(genreName);
+        return eventRepository.findAll(spec)
                 .stream()
                 .map(this::toShowEventInfoDto)
                 .collect(Collectors.toList());
@@ -99,6 +101,29 @@ public class EventServiceImpl implements EventService {
         return toShowDetailedEventInfoDto(event);
     }
 
+    // НОВЫЕ МЕТОДЫ ДЛЯ КОМБИНИРОВАННЫХ ФИЛЬТРОВ
+    @Override
+    public List<ShowEventInfoDto> findEventsWithFilters(String search, EventType type, String genreName) {
+        Specification<Event> spec = Specification.where(EventSpecification.hasTitleContaining(search))
+                .and(EventSpecification.hasEventType(type))
+                .and(EventSpecification.hasGenreName(genreName));
+
+        return eventRepository.findAll(spec)
+                .stream()
+                .map(this::toShowEventInfoDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<ShowEventInfoDto> findEventsWithFiltersPaginated(String search, EventType type, String genreName, Pageable pageable) {
+        Specification<Event> spec = Specification.where(EventSpecification.hasTitleContaining(search))
+                .and(EventSpecification.hasEventType(type))
+                .and(EventSpecification.hasGenreName(genreName));
+
+        return eventRepository.findAll(spec, pageable)
+                .map(this::toShowEventInfoDto);
+    }
+
     @Override
     @Transactional
     public void addEvent(AddEventDto dto) {
@@ -110,12 +135,10 @@ public class EventServiceImpl implements EventService {
         event.setImageUrl(dto.getImageUrl());
         event.setAvailableSeats(dto.getAvailableSeats());
 
-        // Зал
         Hall hall = hallRepository.findById(String.valueOf(dto.getHallId()))
                 .orElseThrow(() -> new IllegalArgumentException("Зал не найден"));
         event.setHall(hall);
 
-        // Жанр (если указан)
         if (dto.getGenreId() != null && !dto.getGenreId().isEmpty()) {
             Genre genre = genreRepository.findById(dto.getGenreId())
                     .orElseThrow(() -> new IllegalArgumentException("Жанр не найден"));
@@ -146,14 +169,12 @@ public class EventServiceImpl implements EventService {
     private ShowEventInfoDto toShowEventInfoDto(Event event) {
         ShowEventInfoDto dto = mapper.map(event, ShowEventInfoDto.class);
 
-        // Зал
         if (event.getHall() != null) {
             dto.setHallName(event.getHall().getName());
         } else {
             dto.setHallName("Не указан");
         }
 
-        // Жанр
         if (event.getGenre() != null) {
             dto.setGenreName(event.getGenre().getName());
         } else {
@@ -166,7 +187,6 @@ public class EventServiceImpl implements EventService {
     private ShowDetailedEventInfoDto toShowDetailedEventInfoDto(Event event) {
         ShowDetailedEventInfoDto dto = mapper.map(event, ShowDetailedEventInfoDto.class);
 
-        // Зал
         if (event.getHall() != null) {
             dto.setHallName(event.getHall().getName());
             dto.setHallAddress(event.getHall().getAddress());
@@ -177,7 +197,6 @@ public class EventServiceImpl implements EventService {
             dto.setCapacity(0);
         }
 
-        // Жанр
         if (event.getGenre() != null) {
             dto.setGenreName(event.getGenre().getName());
         } else {

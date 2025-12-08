@@ -15214,3 +15214,1317 @@ This generated password is for development use only. Your security configuration
     drop table if exists users_roles cascade
 2025-12-08T12:03:39.557+03:00  INFO 13700 --- [philharmonic] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-12-08T12:03:39.591+03:00  INFO 13700 --- [philharmonic] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-12-08T12:14:46.553+03:00  INFO 3516 --- [philharmonic] [restartedMain] c.example.demo.PhilharmonicApplication   : Starting PhilharmonicApplication using Java 21.0.8 with PID 3516 (C:\Users\zlatk\Desktop\UNI но не clo\веб разработка\курсовая\demo\target\classes started by zlatk in C:\Users\zlatk\Desktop\UNI но не clo\веб разработка\курсовая\demo)
+2025-12-08T12:14:46.556+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] c.example.demo.PhilharmonicApplication   : Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-12-08T12:14:46.558+03:00  INFO 3516 --- [philharmonic] [restartedMain] c.example.demo.PhilharmonicApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-12-08T12:14:46.684+03:00  INFO 3516 --- [philharmonic] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-12-08T12:14:46.684+03:00  INFO 3516 --- [philharmonic] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-12-08T12:14:50.236+03:00  INFO 3516 --- [philharmonic] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-12-08T12:14:50.240+03:00  INFO 3516 --- [philharmonic] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-08T12:14:50.680+03:00  INFO 3516 --- [philharmonic] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 414 ms. Found 7 JPA repository interfaces.
+2025-12-08T12:14:50.715+03:00  INFO 3516 --- [philharmonic] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-12-08T12:14:50.718+03:00  INFO 3516 --- [philharmonic] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-12-08T12:14:50.765+03:00  INFO 3516 --- [philharmonic] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repositories.BookingRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-12-08T12:14:50.766+03:00  INFO 3516 --- [philharmonic] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repositories.EventRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-12-08T12:14:50.767+03:00  INFO 3516 --- [philharmonic] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repositories.GenreRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-12-08T12:14:50.768+03:00  INFO 3516 --- [philharmonic] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repositories.HallRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-12-08T12:14:50.769+03:00  INFO 3516 --- [philharmonic] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repositories.PerformerRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-12-08T12:14:50.770+03:00  INFO 3516 --- [philharmonic] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repositories.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-12-08T12:14:50.771+03:00  INFO 3516 --- [philharmonic] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.example.demo.repositories.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-12-08T12:14:50.771+03:00  INFO 3516 --- [philharmonic] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27 ms. Found 0 Redis repository interfaces.
+2025-12-08T12:14:55.604+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-08T12:14:55.786+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-08T12:14:55.791+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-12-08T12:14:56.297+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-08T12:14:56.298+03:00  INFO 3516 --- [philharmonic] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 9613 ms
+2025-12-08T12:14:58.357+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] o.s.w.f.ServerHttpObservationFilter      : Filter 'webMvcObservationFilter' configured for use
+2025-12-08T12:15:00.882+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-08T12:15:01.210+03:00  INFO 3516 --- [philharmonic] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-12-08T12:15:01.368+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-08T12:15:02.419+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-08T12:15:02.505+03:00  INFO 3516 --- [philharmonic] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-08T12:15:03.095+03:00  INFO 3516 --- [philharmonic] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@136b48af
+2025-12-08T12:15:03.098+03:00  INFO 3516 --- [philharmonic] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-08T12:15:03.180+03:00  WARN 3516 --- [philharmonic] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-08T12:15:03.238+03:00  INFO 3516 --- [philharmonic] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-12-08T12:15:07.783+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-08T12:15:07.836+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    set client_min_messages = WARNING
+2025-12-08T12:15:07.870+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists bookings 
+       drop constraint if exists FK2ww82bk3npaiyu9oeehwtt2q3
+2025-12-08T12:15:07.942+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists bookings 
+       drop constraint if exists FKeyog2oic85xg7hsu2je2lx3s6
+2025-12-08T12:15:07.955+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists events 
+       drop constraint if exists FK2dgitr96hv84be389ofxq53sc
+2025-12-08T12:15:07.962+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists events 
+       drop constraint if exists FKq4ae93bqrbhtadn64yumsgk6n
+2025-12-08T12:15:07.968+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists events_performers 
+       drop constraint if exists FKdx1g8wfp9m94f7972tlag4439
+2025-12-08T12:15:07.971+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists events_performers 
+       drop constraint if exists FK6by6l26wagi04hkcyxhj9ombr
+2025-12-08T12:15:07.974+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists performers 
+       drop constraint if exists FKn0tjwa5xwr05la30xcxtl9ujd
+2025-12-08T12:15:07.976+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists users_roles 
+       drop constraint if exists FKj6m8fwv7oqv74fcehir1a9ffy
+2025-12-08T12:15:07.979+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists users_roles 
+       drop constraint if exists FK2o0jvgh89lemvvo17cbqvdxaa
+2025-12-08T12:15:07.983+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    drop table if exists bookings cascade
+2025-12-08T12:15:07.989+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    drop table if exists events cascade
+2025-12-08T12:15:08.000+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    drop table if exists events_performers cascade
+2025-12-08T12:15:08.061+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    drop table if exists genres cascade
+2025-12-08T12:15:08.088+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    drop table if exists halls cascade
+2025-12-08T12:15:08.100+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    drop table if exists performers cascade
+2025-12-08T12:15:08.103+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    drop table if exists roles cascade
+2025-12-08T12:15:08.106+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    drop table if exists users cascade
+2025-12-08T12:15:08.110+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    drop table if exists users_roles cascade
+2025-12-08T12:15:08.129+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    create table bookings (
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        event_id varchar(255),
+        id varchar(255) not null,
+        seats varchar(255) not null,
+        user_id varchar(255),
+        primary key (id)
+    )
+2025-12-08T12:15:08.181+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    create table events (
+        available_seats integer not null,
+        created_at timestamp(6) not null,
+        date_time timestamp(6) not null,
+        updated_at timestamp(6),
+        image_url varchar(1000),
+        description varchar(255) not null,
+        event_type varchar(255) not null check (event_type in ('CONCERT','CINEMA','THEATER','STANDUP','SPORT','MASTERCLASS','FESTIVAL')),
+        genre_id varchar(255),
+        hall_id varchar(255),
+        id varchar(255) not null,
+        title varchar(255) not null,
+        primary key (id)
+    )
+2025-12-08T12:15:08.330+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    create table events_performers (
+        event_id varchar(255) not null,
+        performer_id varchar(255) not null
+    )
+2025-12-08T12:15:08.348+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    create table genres (
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        id varchar(255) not null,
+        name varchar(255) not null unique,
+        primary key (id)
+    )
+2025-12-08T12:15:08.382+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    create table halls (
+        capacity integer not null,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        address varchar(255) not null,
+        id varchar(255) not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+2025-12-08T12:15:08.406+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    create table performers (
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        description varchar(255),
+        genre_id varchar(255),
+        id varchar(255) not null,
+        name varchar(255) not null,
+        primary key (id)
+    )
+2025-12-08T12:15:08.431+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    create table roles (
+        name smallint check (name between 0 and 1),
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        id varchar(255) not null,
+        primary key (id)
+    )
+2025-12-08T12:15:08.460+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    create table users (
+        birth_date date,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        email varchar(255) not null unique,
+        full_name varchar(255) not null,
+        id varchar(255) not null,
+        password varchar(255) not null,
+        username varchar(255) not null unique,
+        primary key (id)
+    )
+2025-12-08T12:15:08.502+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    create table users_roles (
+        role_id varchar(255) not null,
+        user_id varchar(255) not null
+    )
+2025-12-08T12:15:08.534+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists bookings 
+       add constraint FK2ww82bk3npaiyu9oeehwtt2q3 
+       foreign key (event_id) 
+       references events
+2025-12-08T12:15:08.547+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists bookings 
+       add constraint FKeyog2oic85xg7hsu2je2lx3s6 
+       foreign key (user_id) 
+       references users
+2025-12-08T12:15:08.562+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists events 
+       add constraint FK2dgitr96hv84be389ofxq53sc 
+       foreign key (genre_id) 
+       references genres
+2025-12-08T12:15:08.573+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists events 
+       add constraint FKq4ae93bqrbhtadn64yumsgk6n 
+       foreign key (hall_id) 
+       references halls
+2025-12-08T12:15:08.586+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists events_performers 
+       add constraint FKdx1g8wfp9m94f7972tlag4439 
+       foreign key (performer_id) 
+       references performers
+2025-12-08T12:15:08.600+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists events_performers 
+       add constraint FK6by6l26wagi04hkcyxhj9ombr 
+       foreign key (event_id) 
+       references events
+2025-12-08T12:15:08.613+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists performers 
+       add constraint FKn0tjwa5xwr05la30xcxtl9ujd 
+       foreign key (genre_id) 
+       references genres
+2025-12-08T12:15:08.620+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists users_roles 
+       add constraint FKj6m8fwv7oqv74fcehir1a9ffy 
+       foreign key (role_id) 
+       references roles
+2025-12-08T12:15:08.633+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    alter table if exists users_roles 
+       add constraint FK2o0jvgh89lemvvo17cbqvdxaa 
+       foreign key (user_id) 
+       references users
+2025-12-08T12:15:08.656+03:00  INFO 3516 --- [philharmonic] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-08T12:15:10.680+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-08T12:15:12.522+03:00  INFO 3516 --- [philharmonic] [restartedMain] com.example.demo.Init                    : Init компонент инициализирован
+2025-12-08T12:15:12.850+03:00  WARN 3516 --- [philharmonic] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 67495f8a-a39b-40fb-9294-8eb2deecfde8
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-12-08T12:15:12.873+03:00  INFO 3516 --- [philharmonic] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-12-08T12:15:13.441+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-12-08T12:15:13.622+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-12-08T12:15:14.006+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2025-12-08T12:15:14.439+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] o.s.w.s.c.annotation.WebMvcConfigurer    : Default resource handling disabled
+2025-12-08T12:15:14.557+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-12-08T12:15:14.911+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-12-08T12:15:18.461+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 5 endpoints beneath base path '/actuator'
+2025-12-08T12:15:18.765+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-12-08T12:15:19.013+03:00  INFO 3516 --- [philharmonic] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-12-08T12:15:19.081+03:00  INFO 3516 --- [philharmonic] [restartedMain] c.example.demo.PhilharmonicApplication   : Started PhilharmonicApplication in 33.646 seconds (process running for 34.924)
+2025-12-08T12:15:19.220+03:00  INFO 3516 --- [philharmonic] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-08T12:15:19.223+03:00  INFO 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-08T12:15:19.224+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-12-08T12:15:19.224+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-12-08T12:15:19.224+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-12-08T12:15:19.227+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5dd3ca10
+2025-12-08T12:15:19.229+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@3d214256
+2025-12-08T12:15:19.230+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-12-08T12:15:19.238+03:00  INFO 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2025-12-08T12:15:19.321+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /events/all?search=&type=&genre=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0
+2025-12-08T12:15:19.366+03:00  INFO 3516 --- [philharmonic] [restartedMain] com.example.demo.Init                    : Запуск инициализации начальных данных
+2025-12-08T12:15:19.397+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /events/all?search=&type=&genre=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0
+2025-12-08T12:15:19.406+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/events/all?search=&type=&genre=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0", parameters={masked}
+2025-12-08T12:15:19.414+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controllers.EventController#showAllEvents(int, int, String, String, EventType, String, Model)
+2025-12-08T12:15:19.521+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] c.e.demo.controllers.EventController     : Отображение списка мероприятий: страница=0, размер=10, сортировка=title, поиск=, тип=null, жанр=Опера
+2025-12-08T12:15:19.643+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0
+2025-12-08T12:15:19.681+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        roles r1_0
+2025-12-08T12:15:19.831+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] com.example.demo.Init                    : Роли уже существуют, пропуск инициализации
+2025-12-08T12:15:19.835+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        users u1_0
+2025-12-08T12:15:19.910+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] com.example.demo.Init                    : Пользователи уже существуют, пропуск инициализации
+2025-12-08T12:15:19.913+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        halls h1_0
+2025-12-08T12:15:19.921+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] com.example.demo.Init                    : Залы уже существуют, пропуск инициализации
+2025-12-08T12:15:19.925+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        genres g1_0
+2025-12-08T12:15:19.930+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] com.example.demo.Init                    : Жанры уже существуют, пропуск инициализации
+2025-12-08T12:15:19.933+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        performers p1_0
+2025-12-08T12:15:19.941+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] com.example.demo.Init                    : Исполнители уже существуют, пропуск инициализации
+2025-12-08T12:15:19.945+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        events e1_0
+2025-12-08T12:15:19.951+03:00 DEBUG 3516 --- [philharmonic] [restartedMain] com.example.demo.Init                    : Мероприятия уже существуют, пропуск инициализации
+2025-12-08T12:15:19.951+03:00  INFO 3516 --- [philharmonic] [restartedMain] com.example.demo.Init                    : Инициализация начальных данных завершена
+2025-12-08T12:15:19.973+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.available_seats,
+        e1_0.created_at,
+        e1_0.date_time,
+        e1_0.description,
+        e1_0.event_type,
+        e1_0.genre_id,
+        e1_0.hall_id,
+        e1_0.image_url,
+        e1_0.title,
+        e1_0.updated_at 
+    from
+        events e1_0 
+    left join
+        genres g1_0 
+            on g1_0.id=e1_0.genre_id 
+    where
+        1=1 
+        and 1=1 
+        and g1_0.name=? 
+    order by
+        e1_0.title 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2025-12-08T12:15:19.976+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [Опера]
+2025-12-08T12:15:19.976+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2025-12-08T12:15:19.976+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [10]
+2025-12-08T12:15:20.025+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:20.026+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre4]
+2025-12-08T12:15:20.033+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:20.034+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall2]
+2025-12-08T12:15:20.049+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:20.050+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall3]
+2025-12-08T12:15:20.232+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-12-08T12:15:21.379+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-12-08T12:15:21.382+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-12-08T12:15:28.571+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /
+2025-12-08T12:15:28.574+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /
+2025-12-08T12:15:28.574+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2025-12-08T12:15:28.576+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controllers.HomeController#homePage()
+2025-12-08T12:15:28.580+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] c.e.demo.controllers.HomeController      : Отображение главной страницы
+2025-12-08T12:15:28.584+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-12-08T12:15:28.589+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-12-08T12:15:28.590+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-12-08T12:15:29.998+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /events/all
+2025-12-08T12:15:30.000+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /events/all
+2025-12-08T12:15:30.000+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/events/all", parameters={}
+2025-12-08T12:15:30.003+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controllers.EventController#showAllEvents(int, int, String, String, EventType, String, Model)
+2025-12-08T12:15:30.006+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] c.e.demo.controllers.EventController     : Отображение списка мероприятий: страница=0, размер=10, сортировка=title, поиск=null, тип=null, жанр=null
+2025-12-08T12:15:30.014+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0
+2025-12-08T12:15:30.027+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.available_seats,
+        e1_0.created_at,
+        e1_0.date_time,
+        e1_0.description,
+        e1_0.event_type,
+        e1_0.genre_id,
+        e1_0.hall_id,
+        e1_0.image_url,
+        e1_0.title,
+        e1_0.updated_at 
+    from
+        events e1_0 
+    where
+        1=1 
+        and 1=1 
+        and 1=1 
+    order by
+        e1_0.title 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2025-12-08T12:15:30.028+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:INTEGER) <- [0]
+2025-12-08T12:15:30.028+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [10]
+2025-12-08T12:15:30.034+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:30.035+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre5]
+2025-12-08T12:15:30.038+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:30.039+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall1]
+2025-12-08T12:15:30.044+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:30.044+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre1]
+2025-12-08T12:15:30.048+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:30.049+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre2]
+2025-12-08T12:15:30.052+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:30.053+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall2]
+2025-12-08T12:15:30.058+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:30.058+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall3]
+2025-12-08T12:15:30.062+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:30.062+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre6]
+2025-12-08T12:15:30.066+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:30.067+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre4]
+2025-12-08T12:15:30.073+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:30.073+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre3]
+2025-12-08T12:15:30.079+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:30.080+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall4]
+2025-12-08T12:15:30.086+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        count(e1_0.id) 
+    from
+        events e1_0 
+    where
+        1=1 
+        and 1=1 
+        and 1=1
+2025-12-08T12:15:30.095+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-12-08T12:15:30.214+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-12-08T12:15:30.214+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-12-08T12:15:36.361+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /events/all?search=&type=CONCERT&genre=%D0%94%D0%B6%D0%B0%D0%B7
+2025-12-08T12:15:36.363+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /events/all?search=&type=CONCERT&genre=%D0%94%D0%B6%D0%B0%D0%B7
+2025-12-08T12:15:36.363+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/events/all?search=&type=CONCERT&genre=%D0%94%D0%B6%D0%B0%D0%B7", parameters={masked}
+2025-12-08T12:15:36.364+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controllers.EventController#showAllEvents(int, int, String, String, EventType, String, Model)
+2025-12-08T12:15:36.366+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] c.e.demo.controllers.EventController     : Отображение списка мероприятий: страница=0, размер=10, сортировка=title, поиск=, тип=CONCERT, жанр=Джаз
+2025-12-08T12:15:36.370+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0
+2025-12-08T12:15:36.382+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.available_seats,
+        e1_0.created_at,
+        e1_0.date_time,
+        e1_0.description,
+        e1_0.event_type,
+        e1_0.genre_id,
+        e1_0.hall_id,
+        e1_0.image_url,
+        e1_0.title,
+        e1_0.updated_at 
+    from
+        events e1_0 
+    left join
+        genres g1_0 
+            on g1_0.id=e1_0.genre_id 
+    where
+        1=1 
+        and e1_0.event_type=? 
+        and g1_0.name=? 
+    order by
+        e1_0.title 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2025-12-08T12:15:36.382+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [CONCERT]
+2025-12-08T12:15:36.383+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [Джаз]
+2025-12-08T12:15:36.383+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [0]
+2025-12-08T12:15:36.384+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [10]
+2025-12-08T12:15:36.390+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:36.390+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre2]
+2025-12-08T12:15:36.393+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:36.393+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall2]
+2025-12-08T12:15:36.400+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-12-08T12:15:36.416+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-12-08T12:15:36.416+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-12-08T12:15:41.030+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /events/all?search=&type=CONCERT&genre=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0
+2025-12-08T12:15:41.033+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /events/all?search=&type=CONCERT&genre=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0
+2025-12-08T12:15:41.033+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/events/all?search=&type=CONCERT&genre=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0", parameters={masked}
+2025-12-08T12:15:41.035+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controllers.EventController#showAllEvents(int, int, String, String, EventType, String, Model)
+2025-12-08T12:15:41.037+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] c.e.demo.controllers.EventController     : Отображение списка мероприятий: страница=0, размер=10, сортировка=title, поиск=, тип=CONCERT, жанр=Опера
+2025-12-08T12:15:41.046+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0
+2025-12-08T12:15:41.062+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.available_seats,
+        e1_0.created_at,
+        e1_0.date_time,
+        e1_0.description,
+        e1_0.event_type,
+        e1_0.genre_id,
+        e1_0.hall_id,
+        e1_0.image_url,
+        e1_0.title,
+        e1_0.updated_at 
+    from
+        events e1_0 
+    left join
+        genres g1_0 
+            on g1_0.id=e1_0.genre_id 
+    where
+        1=1 
+        and e1_0.event_type=? 
+        and g1_0.name=? 
+    order by
+        e1_0.title 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2025-12-08T12:15:41.063+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [CONCERT]
+2025-12-08T12:15:41.063+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [Опера]
+2025-12-08T12:15:41.064+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [0]
+2025-12-08T12:15:41.064+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [10]
+2025-12-08T12:15:41.070+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-12-08T12:15:41.088+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-12-08T12:15:41.089+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-12-08T12:15:44.103+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /events/all?search=&type=SPORT&genre=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0
+2025-12-08T12:15:44.105+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /events/all?search=&type=SPORT&genre=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0
+2025-12-08T12:15:44.107+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/events/all?search=&type=SPORT&genre=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0", parameters={masked}
+2025-12-08T12:15:44.108+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controllers.EventController#showAllEvents(int, int, String, String, EventType, String, Model)
+2025-12-08T12:15:44.111+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] c.e.demo.controllers.EventController     : Отображение списка мероприятий: страница=0, размер=10, сортировка=title, поиск=, тип=SPORT, жанр=Опера
+2025-12-08T12:15:44.117+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0
+2025-12-08T12:15:44.131+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.available_seats,
+        e1_0.created_at,
+        e1_0.date_time,
+        e1_0.description,
+        e1_0.event_type,
+        e1_0.genre_id,
+        e1_0.hall_id,
+        e1_0.image_url,
+        e1_0.title,
+        e1_0.updated_at 
+    from
+        events e1_0 
+    left join
+        genres g1_0 
+            on g1_0.id=e1_0.genre_id 
+    where
+        1=1 
+        and e1_0.event_type=? 
+        and g1_0.name=? 
+    order by
+        e1_0.title 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2025-12-08T12:15:44.132+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [SPORT]
+2025-12-08T12:15:44.133+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [Опера]
+2025-12-08T12:15:44.133+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [0]
+2025-12-08T12:15:44.133+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [10]
+2025-12-08T12:15:44.141+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-12-08T12:15:44.162+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-12-08T12:15:44.163+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-12-08T12:15:46.832+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /events/all?search=&type=SPORT&genre=
+2025-12-08T12:15:46.834+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /events/all?search=&type=SPORT&genre=
+2025-12-08T12:15:46.835+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/events/all?search=&type=SPORT&genre=", parameters={masked}
+2025-12-08T12:15:46.838+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controllers.EventController#showAllEvents(int, int, String, String, EventType, String, Model)
+2025-12-08T12:15:46.839+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] c.e.demo.controllers.EventController     : Отображение списка мероприятий: страница=0, размер=10, сортировка=title, поиск=, тип=SPORT, жанр=
+2025-12-08T12:15:46.845+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0
+2025-12-08T12:15:46.855+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.available_seats,
+        e1_0.created_at,
+        e1_0.date_time,
+        e1_0.description,
+        e1_0.event_type,
+        e1_0.genre_id,
+        e1_0.hall_id,
+        e1_0.image_url,
+        e1_0.title,
+        e1_0.updated_at 
+    from
+        events e1_0 
+    where
+        1=1 
+        and e1_0.event_type=? 
+        and 1=1 
+    order by
+        e1_0.title 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2025-12-08T12:15:46.855+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [SPORT]
+2025-12-08T12:15:46.855+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2025-12-08T12:15:46.855+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [10]
+2025-12-08T12:15:46.858+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:46.859+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall1]
+2025-12-08T12:15:46.867+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-12-08T12:15:46.884+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-12-08T12:15:46.884+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-12-08T12:15:51.585+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /events/all?search=&type=THEATER&genre=%D0%91%D0%B0%D0%BB%D0%B5%D1%82
+2025-12-08T12:15:51.589+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /events/all?search=&type=THEATER&genre=%D0%91%D0%B0%D0%BB%D0%B5%D1%82
+2025-12-08T12:15:51.590+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/events/all?search=&type=THEATER&genre=%D0%91%D0%B0%D0%BB%D0%B5%D1%82", parameters={masked}
+2025-12-08T12:15:51.592+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controllers.EventController#showAllEvents(int, int, String, String, EventType, String, Model)
+2025-12-08T12:15:51.595+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] c.e.demo.controllers.EventController     : Отображение списка мероприятий: страница=0, размер=10, сортировка=title, поиск=, тип=THEATER, жанр=Балет
+2025-12-08T12:15:51.604+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0
+2025-12-08T12:15:51.626+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.available_seats,
+        e1_0.created_at,
+        e1_0.date_time,
+        e1_0.description,
+        e1_0.event_type,
+        e1_0.genre_id,
+        e1_0.hall_id,
+        e1_0.image_url,
+        e1_0.title,
+        e1_0.updated_at 
+    from
+        events e1_0 
+    left join
+        genres g1_0 
+            on g1_0.id=e1_0.genre_id 
+    where
+        1=1 
+        and e1_0.event_type=? 
+        and g1_0.name=? 
+    order by
+        e1_0.title 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2025-12-08T12:15:51.627+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [THEATER]
+2025-12-08T12:15:51.627+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (2:VARCHAR) <- [Балет]
+2025-12-08T12:15:51.627+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [0]
+2025-12-08T12:15:51.628+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [10]
+2025-12-08T12:15:51.632+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:51.632+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre5]
+2025-12-08T12:15:51.637+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:51.638+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall1]
+2025-12-08T12:15:51.645+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-12-08T12:15:51.661+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-12-08T12:15:51.662+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-12-08T12:15:53.207+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /events/all
+2025-12-08T12:15:53.208+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /events/all
+2025-12-08T12:15:53.210+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/events/all", parameters={}
+2025-12-08T12:15:53.212+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controllers.EventController#showAllEvents(int, int, String, String, EventType, String, Model)
+2025-12-08T12:15:53.215+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] c.e.demo.controllers.EventController     : Отображение списка мероприятий: страница=0, размер=10, сортировка=title, поиск=null, тип=null, жанр=null
+2025-12-08T12:15:53.222+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0
+2025-12-08T12:15:53.238+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.available_seats,
+        e1_0.created_at,
+        e1_0.date_time,
+        e1_0.description,
+        e1_0.event_type,
+        e1_0.genre_id,
+        e1_0.hall_id,
+        e1_0.image_url,
+        e1_0.title,
+        e1_0.updated_at 
+    from
+        events e1_0 
+    where
+        1=1 
+        and 1=1 
+        and 1=1 
+    order by
+        e1_0.title 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2025-12-08T12:15:53.239+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:INTEGER) <- [0]
+2025-12-08T12:15:53.240+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [10]
+2025-12-08T12:15:53.243+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:53.244+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre5]
+2025-12-08T12:15:53.247+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:53.247+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall1]
+2025-12-08T12:15:53.250+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:53.251+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre1]
+2025-12-08T12:15:53.255+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:53.255+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre2]
+2025-12-08T12:15:53.258+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:53.258+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall2]
+2025-12-08T12:15:53.260+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:53.261+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall3]
+2025-12-08T12:15:53.264+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:53.265+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre6]
+2025-12-08T12:15:53.268+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:53.268+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre4]
+2025-12-08T12:15:53.273+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:53.273+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre3]
+2025-12-08T12:15:53.276+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:53.276+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall4]
+2025-12-08T12:15:53.280+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(e1_0.id) 
+    from
+        events e1_0 
+    where
+        1=1 
+        and 1=1 
+        and 1=1
+2025-12-08T12:15:53.287+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-12-08T12:15:53.356+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-12-08T12:15:53.357+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-12-08T12:15:59.157+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /events/all?page=1&size=10&search=&type=&genre=
+2025-12-08T12:15:59.159+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /events/all?page=1&size=10&search=&type=&genre=
+2025-12-08T12:15:59.160+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/events/all?page=1&size=10&search=&type=&genre=", parameters={masked}
+2025-12-08T12:15:59.162+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controllers.EventController#showAllEvents(int, int, String, String, EventType, String, Model)
+2025-12-08T12:15:59.163+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] c.e.demo.controllers.EventController     : Отображение списка мероприятий: страница=1, размер=10, сортировка=title, поиск=, тип=null, жанр=
+2025-12-08T12:15:59.168+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0
+2025-12-08T12:15:59.182+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.available_seats,
+        e1_0.created_at,
+        e1_0.date_time,
+        e1_0.description,
+        e1_0.event_type,
+        e1_0.genre_id,
+        e1_0.hall_id,
+        e1_0.image_url,
+        e1_0.title,
+        e1_0.updated_at 
+    from
+        events e1_0 
+    where
+        1=1 
+        and 1=1 
+        and 1=1 
+    order by
+        e1_0.title 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2025-12-08T12:15:59.183+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:INTEGER) <- [10]
+2025-12-08T12:15:59.183+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [10]
+2025-12-08T12:15:59.187+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:59.188+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall1]
+2025-12-08T12:15:59.192+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:15:59.192+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre7]
+2025-12-08T12:15:59.196+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:15:59.196+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall4]
+2025-12-08T12:15:59.202+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-12-08T12:15:59.220+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-12-08T12:15:59.220+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-12-08T12:16:00.883+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /events/all?page=0&size=10&search=&type=&genre=
+2025-12-08T12:16:00.885+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /events/all?page=0&size=10&search=&type=&genre=
+2025-12-08T12:16:00.885+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/events/all?page=0&size=10&search=&type=&genre=", parameters={masked}
+2025-12-08T12:16:00.887+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controllers.EventController#showAllEvents(int, int, String, String, EventType, String, Model)
+2025-12-08T12:16:00.890+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] c.e.demo.controllers.EventController     : Отображение списка мероприятий: страница=0, размер=10, сортировка=title, поиск=, тип=null, жанр=
+2025-12-08T12:16:00.900+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0
+2025-12-08T12:16:00.909+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        e1_0.id,
+        e1_0.available_seats,
+        e1_0.created_at,
+        e1_0.date_time,
+        e1_0.description,
+        e1_0.event_type,
+        e1_0.genre_id,
+        e1_0.hall_id,
+        e1_0.image_url,
+        e1_0.title,
+        e1_0.updated_at 
+    from
+        events e1_0 
+    where
+        1=1 
+        and 1=1 
+        and 1=1 
+    order by
+        e1_0.title 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2025-12-08T12:16:00.910+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:INTEGER) <- [0]
+2025-12-08T12:16:00.910+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [10]
+2025-12-08T12:16:00.915+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:16:00.915+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre5]
+2025-12-08T12:16:00.918+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:16:00.918+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall1]
+2025-12-08T12:16:00.921+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:16:00.922+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre1]
+2025-12-08T12:16:00.924+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:16:00.925+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre2]
+2025-12-08T12:16:00.928+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:16:00.928+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall2]
+2025-12-08T12:16:00.933+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:16:00.933+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall3]
+2025-12-08T12:16:00.936+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:16:00.937+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre6]
+2025-12-08T12:16:00.940+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:16:00.940+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre4]
+2025-12-08T12:16:00.943+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.name,
+        g1_0.updated_at 
+    from
+        genres g1_0 
+    where
+        g1_0.id=?
+2025-12-08T12:16:00.943+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [genre3]
+2025-12-08T12:16:00.947+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        h1_0.id,
+        h1_0.address,
+        h1_0.capacity,
+        h1_0.created_at,
+        h1_0.name,
+        h1_0.updated_at 
+    from
+        halls h1_0 
+    where
+        h1_0.id=?
+2025-12-08T12:16:00.947+03:00 TRACE 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [hall4]
+2025-12-08T12:16:00.951+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        count(e1_0.id) 
+    from
+        events e1_0 
+    where
+        1=1 
+        and 1=1 
+        and 1=1
+2025-12-08T12:16:00.957+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-12-08T12:16:00.991+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-12-08T12:16:00.991+03:00 DEBUG 3516 --- [philharmonic] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-12-08T12:16:04.928+03:00  INFO 3516 --- [philharmonic] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-08T12:16:04.939+03:00  INFO 3516 --- [philharmonic] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-12-08T12:16:04.969+03:00  INFO 3516 --- [philharmonic] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-08T12:16:04.972+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    set client_min_messages = WARNING
+2025-12-08T12:16:04.977+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    alter table if exists bookings 
+       drop constraint if exists FK2ww82bk3npaiyu9oeehwtt2q3
+2025-12-08T12:16:05.000+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    alter table if exists bookings 
+       drop constraint if exists FKeyog2oic85xg7hsu2je2lx3s6
+2025-12-08T12:16:05.017+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    alter table if exists events 
+       drop constraint if exists FK2dgitr96hv84be389ofxq53sc
+2025-12-08T12:16:05.021+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    alter table if exists events 
+       drop constraint if exists FKq4ae93bqrbhtadn64yumsgk6n
+2025-12-08T12:16:05.024+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    alter table if exists events_performers 
+       drop constraint if exists FKdx1g8wfp9m94f7972tlag4439
+2025-12-08T12:16:05.028+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    alter table if exists events_performers 
+       drop constraint if exists FK6by6l26wagi04hkcyxhj9ombr
+2025-12-08T12:16:05.031+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    alter table if exists performers 
+       drop constraint if exists FKn0tjwa5xwr05la30xcxtl9ujd
+2025-12-08T12:16:05.036+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    alter table if exists users_roles 
+       drop constraint if exists FKj6m8fwv7oqv74fcehir1a9ffy
+2025-12-08T12:16:05.039+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    alter table if exists users_roles 
+       drop constraint if exists FK2o0jvgh89lemvvo17cbqvdxaa
+2025-12-08T12:16:05.043+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    drop table if exists bookings cascade
+2025-12-08T12:16:05.057+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    drop table if exists events cascade
+2025-12-08T12:16:05.063+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    drop table if exists events_performers cascade
+2025-12-08T12:16:05.068+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    drop table if exists genres cascade
+2025-12-08T12:16:05.073+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    drop table if exists halls cascade
+2025-12-08T12:16:05.078+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    drop table if exists performers cascade
+2025-12-08T12:16:05.085+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    drop table if exists roles cascade
+2025-12-08T12:16:05.090+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    drop table if exists users cascade
+2025-12-08T12:16:05.097+03:00 DEBUG 3516 --- [philharmonic] [SpringApplicationShutdownHook] org.hibernate.SQL                        : 
+    drop table if exists users_roles cascade
+2025-12-08T12:16:05.107+03:00  INFO 3516 --- [philharmonic] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-12-08T12:16:05.125+03:00  INFO 3516 --- [philharmonic] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -103,36 +103,28 @@ public class EventController {
             @RequestParam(required = false) String genre,
             Model model) {
 
-        log.debug("Отображение списка мероприятий: страница={}, размер={}, сортировка={}, поиск={}",
-                page, size, sortBy, search);
+        log.debug("Отображение списка мероприятий: страница={}, размер={}, сортировка={}, поиск={}, тип={}, жанр={}",
+                page, size, sortBy, search, type, genre);
 
         model.addAttribute("eventTypes", EventType.values());
         model.addAttribute("genres", genreService.getAllGenres());
 
-        // поиск
+        // Сохраняем выбранные фильтры для отображения в форме
         if (search != null && !search.isBlank()) {
-            model.addAttribute("eventInfos", eventService.searchEvents(search));
             model.addAttribute("search", search);
-            return "event-all";
         }
-
-        // фильтрация по типу мероприятия
         if (type != null) {
-            model.addAttribute("eventInfos", eventService.findByEventType(type));
             model.addAttribute("selectedType", type);
-            return "event-all";
         }
-
-        // фильтрация по жанру
         if (genre != null && !genre.isBlank()) {
-            model.addAttribute("eventInfos", eventService.findByGenreName(genre));
             model.addAttribute("selectedGenre", genre);
-            return "event-all";
         }
 
-        // пагинация
+        // Используем новый метод с комбинированными фильтрами
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
-        Page<ShowEventInfoDto> eventPage = eventService.allEventsPaginated(pageable);
+        Page<ShowEventInfoDto> eventPage = eventService.findEventsWithFiltersPaginated(
+                search, type, genre, pageable
+        );
 
         model.addAttribute("eventInfos", eventPage.getContent());
         model.addAttribute("currentPage", page);
