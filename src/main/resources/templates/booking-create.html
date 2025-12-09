@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Бронирование билетов</title>
+</head>
+<body>
+<h1>Бронирование билетов</h1>
+
+<!-- Сообщение об ошибке -->
+<div th:if="${errorMessage}" style="padding: 1rem; margin-bottom: 1rem; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px;">
+    <p th:text="${errorMessage}" style="margin: 0; color: #721c24;"></p>
+</div>
+
+<!-- Сообщение об успехе -->
+<div th:if="${successMessage}" style="padding: 1rem; margin-bottom: 1rem; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 5px;">
+    <p th:text="${successMessage}" style="margin: 0; color: #155724;"></p>
+</div>
+
+<!-- Информация о пользователе -->
+<div style="margin-bottom: 1rem;">
+    <p><strong>Ваши данные:</strong></p>
+    <p><strong>Имя:</strong> <span th:text="${bookingCreateDto.userFullName}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${bookingCreateDto.userEmail}"></span></p>
+</div>
+
+<!-- Форма бронирования -->
+<form th:action="@{|/bookings/create/${title}|}"
+      th:method="post"
+      th:object="${bookingCreateDto}">
+
+    <input type="hidden" th:field="*{userFullName}">
+    <input type="hidden" th:field="*{userEmail}">
+
+    <!-- Количество мест -->
+    <div style="margin-bottom: 1rem;">
+        <label for="seatsCount">Количество мест *</label>
+        <input type="number"
+               id="seatsCount"
+               th:field="*{seatsCount}"
+               min="1"
+               max="10"
+               required>
+        <span th:if="${#fields.hasErrors('seatsCount')}"
+              th:errors="*{seatsCount}"
+              style="color: red; display: block;"></span>
+        <small>Укажите количество билетов (от 1 до 10)</small>
+    </div>
+
+    <!-- Комментарий -->
+    <div style="margin-bottom: 1rem;">
+        <label for="comment">Комментарий (необязательно)</label>
+        <textarea id="comment"
+                  th:field="*{comment}"
+                  rows="3"
+                  placeholder="Например: места поближе к сцене, требуется доступ для инвалидной коляски и т.д."></textarea>
+        <small>Можно оставить пустым</small>
+    </div>
+
+    <!-- Кнопки -->
+    <div style="margin-top: 1rem;">
+        <button type="submit">Забронировать билеты</button>
+        <a th:href="@{/events/all}" style="margin-left: 1rem;">Вернуться к афише</a>
+    </div>
+
+    <p><small>* - обязательные поля</small></p>
+    <p><small>После бронирования вы будете перенаправлены в свой профиль</small></p>
+</form>
+
+<p>
+    <a th:href="@{/events/all}">Вернуться к афише</a> |
+    <a th:href="@{/}">На главную</a>
+</p>
+</body>
+</html>

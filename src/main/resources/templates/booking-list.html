@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои бронирования</title>
+</head>
+<body>
+<h1>Мои бронирования</h1>
+
+<!-- Сообщение об ошибке -->
+<div th:if="${errorMessage}" style="padding: 1rem; margin-bottom: 1rem; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px;">
+    <p th:text="${errorMessage}" style="margin: 0; color: #721c24;"></p>
+</div>
+
+<!-- Сообщение об успехе -->
+<div th:if="${successMessage}" style="padding: 1rem; margin-bottom: 1rem; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 5px;">
+    <p th:text="${successMessage}" style="margin: 0; color: #155724;"></p>
+</div>
+
+<!-- Если нет бронирований -->
+<div th:if="${#lists.isEmpty(bookings)}">
+    <p><em>У вас нет активных бронирований.</em></p>
+    <p>
+        <a th:href="@{/events/all}">Посмотреть афишу</a>
+    </p>
+</div>
+
+<!-- Список бронирований -->
+<div th:each="booking : ${bookings}" style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid #ddd;">
+    <h3 th:text="${booking.eventTitle}"></h3>
+
+    <p>
+        <strong>Дата и время мероприятия:</strong>
+        <span th:text="${booking.eventDateTime}"></span>
+    </p>
+    <p>
+        <strong>Зал:</strong>
+        <span th:text="${booking.hallName}"></span>
+    </p>
+    <p>
+        <strong>Количество мест:</strong>
+        <span th:text="${booking.seatsCount}"></span>
+    </p>
+    <p>
+        <strong>Забронировано на:</strong>
+        <span th:text="${booking.userFullName}"></span>
+        (<span th:text="${booking.userEmail}"></span>)
+    </p>
+    <p>
+        <strong>Дата бронирования:</strong>
+        <span th:text="${booking.createdAt}"></span>
+    </p>
+    <p th:if="${booking.comment != null && !booking.comment.isEmpty()}">
+        <strong>Комментарий:</strong>
+        <span th:text="${booking.comment}"></span>
+    </p>
+
+    <form th:action="@{|/bookings/cancel/${booking.id}|}" method="post">
+        <button type="submit" onclick="return confirm('Вы уверены, что хотите отменить это бронирование?')">
+            Отменить бронирование
+        </button>
+        <small>Места вернутся в общее количество</small>
+    </form>
+</div>
+
+<p>
+    <a th:href="@{/events/all}">Вернуться к афише</a> |
+    <a th:href="@{/}">На главную</a>
+</p>
+</body>
+</html>

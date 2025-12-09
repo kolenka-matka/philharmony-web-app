@@ -33,7 +33,4 @@ public interface EventRepository extends JpaRepository<Event, String>, JpaSpecif
     // Метод для комбинированных фильтров через спецификации
     Page<Event> findAll(Specification<Event> spec, Pageable pageable);
     List<Event> findAll(Specification<Event> spec);
-
-    // Методы для жанров через спецификации (можно удалить старые @Query методы)
-    // Эти методы теперь не нужны, если используем спецификации
 }
