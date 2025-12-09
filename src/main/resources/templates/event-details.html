@@ -45,24 +45,6 @@
     <p><strong>Жанр:</strong> <span th:text="${eventDetails.genreName}"></span></p>
 </div>
 
-<!-- Бронирование -->
-<div sec:authorize="isAuthenticated()" th:if="${eventDetails.availableSeats > 0}">
-    <a th:href="@{/bookings/create/{event-title}(event-title=${eventDetails.title})}">
-        <button>Забронировать места</button>
-    </a>
-    <p>Осталось <span th:text="${eventDetails.availableSeats}"></span> мест</p>
-</div>
-
-<div sec:authorize="isAuthenticated()" th:unless="${eventDetails.availableSeats > 0}">
-    <button disabled>Все места заняты</button>
-</div>
-
-<div sec:authorize="!isAuthenticated()" th:if="${eventDetails.availableSeats > 0}">
-    <p>Для бронирования мест необходимо:</p>
-    <a th:href="@{/auth/login}"><button>Войти</button></a>
-    <a th:href="@{/auth/register}"><button>Зарегистрироваться</button></a>
-</div>
-
 <!-- Удаление (админ) -->
 <div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{/events/event-delete/{event-title}(event-title=${eventDetails.title})}"
