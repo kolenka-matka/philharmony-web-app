@@ -3,6 +3,7 @@ package com.example.demo.services;
 import com.example.demo.dto.AddEventDto;
 import com.example.demo.dto.ShowEventInfoDto;
 import com.example.demo.dto.ShowDetailedEventInfoDto;
+import com.example.demo.dto.TopEventDto;
 import com.example.demo.models.enums.EventType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,4 +25,6 @@ public interface EventService {
 
     void addEvent(AddEventDto dto);
     void deleteEvent(String eventTitle);
+
+    List<TopEventDto> getTopEventsByBookings(int limit);
 }

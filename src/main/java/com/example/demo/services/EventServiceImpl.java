@@ -3,6 +3,7 @@ package com.example.demo.services;
 import com.example.demo.dto.AddEventDto;
 import com.example.demo.dto.ShowEventInfoDto;
 import com.example.demo.dto.ShowDetailedEventInfoDto;
+import com.example.demo.dto.TopEventDto;
 import com.example.demo.models.entities.Event;
 import com.example.demo.models.entities.Genre;
 import com.example.demo.models.entities.Hall;
@@ -17,12 +18,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -212,5 +215,31 @@ public class EventServiceImpl implements EventService {
         }
 
         return dto;
+    }
+
+    @Override
+    public List<TopEventDto> getTopEventsByBookings(int limit) {
+        Pageable pageable = PageRequest.of(0, limit);
+        List<Object[]> results = eventRepository.findTopEventsByBookings(pageable);
+
+        List<TopEventDto> topEvents = new ArrayList<>();
+        int position = 1;
+
+        for (Object[] result : results) {
+            Event event = (Event) result[0];
+            Long totalSeats = (Long) result[1]; // SUM возвращает Long
+
+            TopEventDto dto = new TopEventDto(
+                    event.getTitle(),
+                    totalSeats != null ? totalSeats.intValue() : 0,
+                    event.getImageUrl() != null ? event.getImageUrl() : "/images/default-event.jpg",
+                    position
+            );
+
+            topEvents.add(dto);
+            position++;
+        }
+
+        return topEvents;
     }
 }

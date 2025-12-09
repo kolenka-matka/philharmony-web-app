@@ -33,4 +33,11 @@ public interface EventRepository extends JpaRepository<Event, String>, JpaSpecif
     // Метод для комбинированных фильтров через спецификации
     Page<Event> findAll(Specification<Event> spec, Pageable pageable);
     List<Event> findAll(Specification<Event> spec);
+
+    @Query("SELECT e, COALESCE(SUM(b.seatsCount), 0) as totalSeats " +
+            "FROM Event e " +
+            "LEFT JOIN Booking b ON e.id = b.event.id " +
+            "GROUP BY e.id " +
+            "ORDER BY totalSeats DESC")
+    List<Object[]> findTopEventsByBookings(Pageable pageable);
 }
