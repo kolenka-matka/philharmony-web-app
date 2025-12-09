@@ -13,6 +13,7 @@ public class Role extends BaseEntity {
     }
 
     public Role() {
+
     }
 
     @Enumerated(EnumType.STRING)

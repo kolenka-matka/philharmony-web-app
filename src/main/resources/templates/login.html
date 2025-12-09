@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+</head>
+<body>
+<!-- Навигация (без фрагментов) -->
+<header>
+    <h1>Филармония</h1>
+    <nav>
+        <a th:href="@{/}">Главная</a>
+        <a th:href="@{/events/all}">Афиша</a>
+        <a th:href="@{/users/register}">Регистрация</a>
+    </nav>
+</header>
+
+<main>
+    <article>
+        <hgroup>
+            <h1>Вход</h1>
+            <p>Введите свои данные для доступа к системе</p>
+        </hgroup>
+
+        <form th:action="@{/users/login}" th:method="post">
+            <label for="username">
+                Логин
+                <input id="username"
+                       name="username"
+                       th:value="${username}"
+                       type="text"
+                       placeholder="Введите логин"
+                       required/>
+            </label>
+
+            <label for="password">
+                Пароль
+                <input id="password"
+                       name="password"
+                       type="password"
+                       placeholder="Введите пароль"
+                       required/>
+            </label>
+
+            <label>
+                <input type="checkbox" name="remember-me" role="switch">
+                Запомнить меня
+            </label>
+
+            <p th:if="${badCredentials}" style="color: red;">
+                Неверный логин или пароль.
+            </p>
+
+            <button type="submit">Войти</button>
+        </form>
+    </article>
+</main>
+
+<footer>
+    <p>© 2025 Филармония</p>
+</footer>
+</body>
+</html>

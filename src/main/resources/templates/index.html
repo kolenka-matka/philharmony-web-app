@@ -1,23 +1,51 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <title>Филармония — Главная</title>
 </head>
 <body>
 <header>
-    <h1>Добро пожаловать в Филармония Web</h1>
+    <h1>Филармония</h1>
     <nav>
+        <a th:href="@{/}">Главная</a>
         <a th:href="@{/events/all}">Афиша</a>
+
+        <span th:if="${#authorization.expression('!isAuthenticated()')}">
+            <a th:href="@{/users/login}">Войти</a>
+            <a th:href="@{/users/register}">Зарегистрироваться</a>
+        </span>
+
+        <span th:if="${#authorization.expression('isAuthenticated()')}">
+            <a th:href="@{/users/profile}">Профиль</a>
+            <!-- Форма для выхода -->
+            <form th:action="@{/users/logout}" method="post" style="display: inline;">
+                <button type="submit" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;">
+                    Выйти
+                </button>
+            </form>
+        </span>
     </nav>
 </header>
 
 <main>
-    <p>Главная страница приложения — пока что простой шаблон.</p>
+    <article>
+        <hgroup>
+            <h1>Добро пожаловать в Филармонию</h1>
+            <p>Платформа для управления концертными событиями</p>
+        </hgroup>
+
+        <p>Здесь вы можете просматривать афишу событий, бронировать билеты и управлять мероприятиями.</p>
+
+        <p th:if="${#authorization.expression('!isAuthenticated()')}">
+            <a th:href="@{/users/login}">Войдите</a> или
+            <a th:href="@{/users/register}">зарегистрируйтесь</a> для доступа ко всем функциям.
+        </p>
+    </article>
 </main>
 
 <footer>
-    <p>© 2025 Филармония Web</p>
+    <p>© 2025 Филармония</p>
 </footer>
 </body>
 </html>

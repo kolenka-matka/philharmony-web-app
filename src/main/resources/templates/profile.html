@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+</head>
+<body>
+<header>
+    <h1>Филармония</h1>
+    <nav>
+        <a th:href="@{/}">Главная</a>
+        <a th:href="@{/events/all}">Афиша</a>
+        <!-- Форма для выхода -->
+        <form th:action="@{/users/logout}" method="post" style="display: inline;">
+            <button type="submit" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;">
+                Выйти
+            </button>
+        </form>
+    </nav>
+</header>
+
+<main>
+    <hgroup>
+        <h1>Профиль пользователя</h1>
+        <p>Информация о вашей учетной записи</p>
+    </hgroup>
+
+    <article>
+        <div th:object="${user}">
+            <h2 th:text="*{fullName}"></h2>
+            <p><strong>Логин:</strong> <span th:text="*{username}"></span></p>
+            <p><strong>Email:</strong> <span th:text="*{email}"></span></p>
+            <p><strong>Возраст:</strong> <span th:text="*{age}"></span></p>
+            <div>
+                <strong>Роли:</strong>
+                <div sec:authentication="principal.authorities" style="margin-top: 0.5rem;"></div>
+            </div>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <p>© 2025 Филармония</p>
+</footer>
+</body>
+</html>

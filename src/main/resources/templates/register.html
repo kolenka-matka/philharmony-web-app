@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body>
+<header>
+    <h1>Филармония</h1>
+    <nav>
+        <a th:href="@{/}">Главная</a>
+        <a th:href="@{/events/all}">Афиша</a>
+        <a th:href="@{/users/login}">Вход</a>
+    </nav>
+</header>
+
+<main>
+    <article>
+        <hgroup>
+            <h1>Регистрация</h1>
+            <p>Создайте новую учетную запись для доступа к системе</p>
+        </hgroup>
+
+        <form th:action="@{/users/register}"
+              th:method="post"
+              th:object="${userRegistrationDto}">
+
+            <label for="username">
+                Логин
+                <input th:field="*{username}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       id="username"
+                       placeholder="Выберите логин"
+                       required/>
+                <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: red;"></small>
+            </label>
+
+            <label for="fullname">
+                Полное имя
+                <input th:field="*{fullname}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       id="fullname"
+                       placeholder="Введите полное имя"
+                       required/>
+                <small th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}" style="color: red;"></small>
+            </label>
+
+            <label for="email">
+                Электронная почта
+                <input th:field="*{email}"
+                       th:errorclass="is-invalid"
+                       type="email"
+                       id="email"
+                       placeholder="ваш.email@example.com"
+                       required/>
+                <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red;"></small>
+            </label>
+
+            <label for="age">
+                Возраст
+                <input th:field="*{age}"
+                       th:errorclass="is-invalid"
+                       type="number"
+                       min="0"
+                       id="age"
+                       placeholder="Введите возраст"
+                       required/>
+                <small th:if="${#fields.hasErrors('age')}" th:errors="*{age}" style="color: red;"></small>
+            </label>
+
+            <label for="password">
+                Пароль
+                <input th:field="*{password}"
+                       required
+                       minlength="5"
+                       maxlength="20"
+                       th:errorclass="is-invalid"
+                       type="password"
+                       id="password"
+                       placeholder="Придумайте пароль"/>
+                <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red;"></small>
+            </label>
+
+            <label for="confirmPassword">
+                Подтвердите пароль
+                <input th:field="*{confirmPassword}"
+                       required
+                       minlength="5"
+                       maxlength="20"
+                       th:errorclass="is-invalid"
+                       type="password"
+                       id="confirmPassword"
+                       placeholder="Повторите пароль"/>
+                <small th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" style="color: red;"></small>
+            </label>
+
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </article>
+</main>
+
+<footer>
+    <p>© 2025 Филармония</p>
+</footer>
+</body>
+</html>

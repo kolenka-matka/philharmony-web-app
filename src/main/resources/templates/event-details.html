@@ -1,48 +1,77 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Детали мероприятия</title>
+    <title th:text="${eventDetails.title} + ' | Филармония'"></title>
 </head>
 <body>
+<!-- Простая навигация -->
+<div style="padding: 10px; background-color: #f0f0f0;">
+    <a th:href="@{/events/all}">Все мероприятия</a>
+    <div style="float: right;">
+            <span sec:authorize="isAuthenticated()">
+                Привет, <span sec:authentication="name"></span> |
+                <a th:href="@{/auth/logout}">Выход</a>
+            </span>
+        <span sec:authorize="!isAuthenticated()">
+                <a th:href="@{/auth/login}">Войти</a> |
+                <a th:href="@{/auth/register}">Зарегистрироваться</a>
+            </span>
+    </div>
+</div>
+
+<h1 th:text="${eventDetails.title}">Название мероприятия</h1>
+
 <!-- Картинка -->
 <img th:if="${eventDetails.imageUrl != null and !eventDetails.imageUrl.isEmpty()}"
      th:src="${eventDetails.imageUrl}"
      th:alt="${eventDetails.title}"
-     width="800" height="400">
+     width="400">
 
 <img th:unless="${eventDetails.imageUrl != null and !eventDetails.imageUrl.isEmpty()}"
      src="/images/default-event.jpg"
      th:alt="${eventDetails.title}"
-     width="800" height="400">
-
-<h1 th:text="${eventDetails.title}">Название мероприятия</h1>
+     width="400">
 
 <p><strong>Описание:</strong> <span th:text="${eventDetails.description}"></span></p>
-
-<p>
-    <strong>Дата и время:</strong>
-    <span th:text="${#temporals.format(eventDetails.dateTime, 'dd.MM.yyyy HH:mm')}"></span>
-</p>
-
+<p><strong>Дата и время:</strong> <span th:text="${#temporals.format(eventDetails.dateTime, 'dd.MM.yyyy HH:mm')}"></span></p>
 <p><strong>Зал:</strong> <span th:text="${eventDetails.hallName}"></span></p>
 <p><strong>Адрес зала:</strong> <span th:text="${eventDetails.hallAddress}"></span></p>
-<p><strong>Вместимость зала:</strong> <span th:text="${eventDetails.capacity}"></span> мест</p>
+<p><strong>Вместимость:</strong> <span th:text="${eventDetails.capacity}"></span> мест</p>
 <p><strong>Свободных мест:</strong> <span th:text="${eventDetails.availableSeats}"></span></p>
 
-<p th:if="${eventDetails.genreName}">
-    <strong>Жанр:</strong> <span th:text="${eventDetails.genreName}"></span>
-</p>
+<div th:if="${eventDetails.genreName}">
+    <p><strong>Жанр:</strong> <span th:text="${eventDetails.genreName}"></span></p>
+</div>
 
-<div>
+<!-- Бронирование -->
+<div sec:authorize="isAuthenticated()" th:if="${eventDetails.availableSeats > 0}">
+    <a th:href="@{/bookings/create/{event-title}(event-title=${eventDetails.title})}">
+        <button>Забронировать места</button>
+    </a>
+    <p>Осталось <span th:text="${eventDetails.availableSeats}"></span> мест</p>
+</div>
+
+<div sec:authorize="isAuthenticated()" th:unless="${eventDetails.availableSeats > 0}">
+    <button disabled>Все места заняты</button>
+</div>
+
+<div sec:authorize="!isAuthenticated()" th:if="${eventDetails.availableSeats > 0}">
+    <p>Для бронирования мест необходимо:</p>
+    <a th:href="@{/auth/login}"><button>Войти</button></a>
+    <a th:href="@{/auth/register}"><button>Зарегистрироваться</button></a>
+</div>
+
+<!-- Удаление (админ) -->
+<div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{/events/event-delete/{event-title}(event-title=${eventDetails.title})}"
-       role="button"
-       class="secondary"
-       onclick="return confirm('Вы уверены, что хотите удалить это мероприятие?')">
-        Удалить мероприятие
+       onclick="return confirm('Удалить мероприятие?')">
+        <button style="background-color: red; color: white;">Удалить мероприятие</button>
     </a>
 </div>
 
-<a th:href="@{/events/all}">Вернуться к списку мероприятий</a>
+<br>
+<a th:href="@{/events/all}">← Вернуться к списку мероприятий</a>
 </body>
 </html>

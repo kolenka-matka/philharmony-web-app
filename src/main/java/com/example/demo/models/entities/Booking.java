@@ -15,12 +15,22 @@ public class Booking extends BaseEntity {
     private Event event;
 
     @Column(nullable = false)
-    private String seats;
+    private String comment;
+
+    @Column(nullable = false)
+    private int seatsCount;
+
     public User getUser() { return user; }
     public Event getEvent() { return event; }
-    public String getSeats() { return seats; }
 
     public void setUser(User user) { this.user = user; }
     public void setEvent(Event event) { this.event = event; }
-    public void setSeats(String seats) { this.seats = seats; }
+
+    public String getComment() {return comment;}
+
+    public void setComment(String comment) {this.comment = comment;}
+
+    public int getSeatsCount() {return seatsCount;}
+
+    public void setSeatsCount(int seatsCount) {this.seatsCount = seatsCount;}
 }
