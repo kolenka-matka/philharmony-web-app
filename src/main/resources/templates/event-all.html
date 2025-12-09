@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Все мероприятия</title>
 </head>
 <body>
+<div th:replace="~{fragments/navbar}"></div>
+
 <!-- Сообщение об ошибке-->
 <div th:if="${errorMessage}" style="padding: 1rem; margin-bottom: 1rem; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px;">
     <p th:text="${errorMessage}" style="margin: 0; color: #721c24;"></p>
@@ -17,16 +19,18 @@
 
 <h1>Все мероприятия</h1>
 
+
 <form method="get" action="/events/all">
-    <div>
+    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <!-- Поиск -->
         <input type="search"
                name="search"
                placeholder="Поиск по названию..."
-               th:value="${search}">
-        <button type="submit">Искать</button>
-    </div>
-    <div style="margin-top: 10px;">
-        <select name="type" id="typeFilter">
+               th:value="${search}"
+               style="padding: 5px;">
+
+        <!-- Фильтр по типу -->
+        <select name="type" id="typeFilter" style="padding: 5px;">
             <option value="">Все типы</option>
             <option th:each="eventType : ${eventTypes}"
                     th:value="${eventType}"
@@ -35,7 +39,8 @@
             </option>
         </select>
 
-        <select name="genre" id="genreFilter">
+        <!-- Фильтр по жанру -->
+        <select name="genre" id="genreFilter" style="padding: 5px;">
             <option value="">Все жанры</option>
             <option th:each="genre : ${genres}"
                     th:value="${genre.name}"
@@ -44,23 +49,29 @@
             </option>
         </select>
 
-        <button type="submit" style="margin-left: 10px;">Применить фильтр</button>
-        <a th:href="@{/events/all}" style="margin-left: 10px;">Сбросить фильтр</a>
+        <!-- Кнопки действий -->
+        <button type="submit">Искать</button>
+        <a th:href="@{/events/all}">Сбросить</a>
+
+        <!-- Кнопка добавления для админов -->
+        <span sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{/events/add}" style="margin-left: 10px;">
+                <button type="button">Добавить мероприятие</button>
+            </a>
+        </span>
     </div>
 </form>
+<p>
+
+</p>
 
 <!-- Список мероприятий -->
-<div th:each="e : ${eventInfos}" class="card">
+<div th:each="e : ${eventInfos}" class="card" style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid #ddd;">
     <!-- Картинка -->
-    <div th:if="${e.imageUrl != null and !e.imageUrl.isEmpty()}">
+    <div>
         <img th:src="${e.imageUrl}"
              th:alt="${e.title}"
-             width="200" height="150">
-    </div>
-    <div th:unless="${e.imageUrl != null and !e.imageUrl.isEmpty()}">
-        <img src="/images/default-event.jpg"
-             th:alt="${e.title}"
-             width="200" height="150">
+             width="400" height="300">
     </div>
 
     <h3 th:text="${e.title}"></h3>
@@ -77,11 +88,22 @@
         <span th:text="${e.availableSeats}"></span>
     </p>
 
-    <a th:href="@{/events/event-details/{title}(title=${e.title})}">Подробнее</a>
+    <div style="margin-top: 0.5rem;">
+        <a th:href="@{/events/event-details/{title}(title=${e.title})}">Подробнее</a>
 
-    <a th:href="@{/bookings/create/{title}(title=${e.title})}">Бронировать билеты</a>
+        <span sec:authorize="!hasRole('ROLE_ADMIN')">
+            | <a th:href="@{/bookings/create/{title}(title=${e.title})}">Бронировать билеты</a>
+        </span>
 
-    <hr>
+        <span sec:authorize="hasRole('ROLE_ADMIN')" style="margin-left: 1rem;">
+            <form th:action="@{/events/event-delete/{event-title}(event-title=${e.title})}"
+                  method="post"
+                  style="display: inline;"
+                  onsubmit="return confirm('Вы уверены, что хотите удалить мероприятие \'' + '[[${e.title}]]' + '\'?')">
+                <button type="submit">Удалить</button>
+            </form>
+        </span>
+    </div>
 </div>
 
 <!-- Пагинация -->
@@ -120,4 +142,7 @@
 </p>
 
 </body>
+
+<footer th:replace="fragments/footer"></footer>
+
 </html>

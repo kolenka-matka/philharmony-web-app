@@ -5,6 +5,8 @@
     <title>Бронирование билетов</title>
 </head>
 <body>
+<div th:replace="fragments/navbar"></div>
+
 <h1>Бронирование билетов</h1>
 
 <!-- Сообщение об ошибке -->
@@ -66,10 +68,9 @@
     <p><small>* - обязательные поля</small></p>
     <p><small>После бронирования вы будете перенаправлены в свой профиль</small></p>
 </form>
-
-<p>
-    <a th:href="@{/events/all}">Вернуться к афише</a> |
-    <a th:href="@{/}">На главную</a>
-</p>
 </body>
+
+<footer th:replace="fragments/footer"></footer>
+
+
 </html>

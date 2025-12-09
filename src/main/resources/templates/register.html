@@ -5,14 +5,15 @@
     <title>Регистрация</title>
 </head>
 <body>
-<header>
-    <h1>Филармония</h1>
-    <nav>
-        <a th:href="@{/}">Главная</a>
-        <a th:href="@{/events/all}">Афиша</a>
-        <a th:href="@{/users/login}">Вход</a>
-    </nav>
-</header>
+<div th:replace="fragments/navbar"></div>
+<!--<header>-->
+<!--    <h1>Филармония</h1>-->
+<!--    <nav>-->
+<!--        <a th:href="@{/}">Главная</a>-->
+<!--        <a th:href="@{/events/all}">Афиша</a>-->
+<!--        <a th:href="@{/users/login}">Вход</a>-->
+<!--    </nav>-->
+<!--</header>-->
 
 <main>
     <article>
@@ -101,8 +102,7 @@
     </article>
 </main>
 
-<footer>
-    <p>© 2025 Филармония</p>
-</footer>
+<footer th:replace="fragments/footer"></footer>
+
 </body>
 </html>

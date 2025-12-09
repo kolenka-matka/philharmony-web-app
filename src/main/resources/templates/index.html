@@ -1,33 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/navbar"></div>
 <head>
     <meta charset="UTF-8">
     <title>Филармония — Главная</title>
 </head>
 <body>
-<header>
-    <h1>Филармония</h1>
-    <nav>
-        <a th:href="@{/}">Главная</a>
-        <a th:href="@{/events/all}">Афиша</a>
-
-        <span th:if="${#authorization.expression('!isAuthenticated()')}">
-            <a th:href="@{/users/login}">Войти</a>
-            <a th:href="@{/users/register}">Зарегистрироваться</a>
-        </span>
-
-        <span th:if="${#authorization.expression('isAuthenticated()')}">
-            <a th:href="@{/users/profile}">Профиль</a>
-            <!-- Форма для выхода -->
-            <form th:action="@{/users/logout}" method="post" style="display: inline;">
-                <button type="submit" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;">
-                    Выйти
-                </button>
-            </form>
-        </span>
-    </nav>
-</header>
-
 <main>
     <article>
         <hgroup>
@@ -44,8 +22,7 @@
     </article>
 </main>
 
-<footer>
-    <p>© 2025 Филармония</p>
-</footer>
+<footer th:replace="fragments/footer"></footer>
+
 </body>
 </html>

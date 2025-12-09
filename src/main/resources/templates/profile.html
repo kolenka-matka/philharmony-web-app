@@ -5,43 +5,45 @@
     <title>Профиль пользователя</title>
 </head>
 <body>
-<header>
-    <h1>Филармония</h1>
-    <nav>
-        <a th:href="@{/}">Главная</a>
-        <a th:href="@{/events/all}">Афиша</a>
-        <a th:href="@{/bookings/my}">Мои бронирования</a>
-        <!-- Форма для выхода -->
-        <form th:action="@{/users/logout}" method="post" style="display: inline;">
-            <button type="submit" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;">
-                Выйти
-            </button>
-        </form>
-    </nav>
-</header>
+<div th:replace="~{fragments/navbar}"></div>
 
-<main>
-    <hgroup>
-        <h1>Профиль пользователя</h1>
-        <p>Информация о вашей учетной записи</p>
-    </hgroup>
+<h1>Профиль пользователя</h1>
 
-    <article>
-        <div th:object="${user}">
-            <h2 th:text="*{fullName}"></h2>
-            <p><strong>Логин:</strong> <span th:text="*{username}"></span></p>
-            <p><strong>Email:</strong> <span th:text="*{email}"></span></p>
-            <p><strong>Возраст:</strong> <span th:text="*{age}"></span></p>
-            <div>
-                <strong>Роли:</strong>
-                <div sec:authentication="principal.authorities" style="margin-top: 0.5rem;"></div>
-            </div>
-        </div>
-    </article>
-</main>
+<!-- Сообщения -->
+<div th:if="${errorMessage}" style="padding: 1rem; margin-bottom: 1rem; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px;">
+    <p th:text="${errorMessage}" style="margin: 0; color: #721c24;"></p>
+</div>
 
-<footer>
-    <p>© 2025 Филармония</p>
-</footer>
+<div th:if="${successMessage}" style="padding: 1rem; margin-bottom: 1rem; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 5px;">
+    <p th:text="${successMessage}" style="margin: 0; color: #155724;"></p>
+</div>
+
+<!-- Информация о пользователе -->
+<div th:object="${user}">
+    <p><strong>Имя:</strong> <span th:text="*{fullName}"></span></p>
+    <p><strong>Логин:</strong> <span th:text="*{username}"></span></p>
+    <p><strong>Email:</strong> <span th:text="*{email}"></span></p>
+    <p><strong>Возраст:</strong> <span th:text="*{age}"></span></p>
+
+    <div>
+        <strong>Роли:</strong>
+        <div sec:authentication="principal.authorities"></div>
+    </div>
+</div>
+
+<!-- Ссылки для действий -->
+<div style="margin-top: 2rem;">
+    <p sec:authorize="!hasRole('ROLE_ADMIN')">
+        <a th:href="@{/bookings/my}">Посмотреть мои бронирования</a>
+    </p>
+    <p>
+        <a th:href="@{/events/all}">Посмотреть афишу</a>
+    </p>
+    <p sec:authorize="hasRole('ROLE_ADMIN')">
+        <a th:href="@{/events/add}">Добавить мероприятие</a>
+    </p>
+</div>
 </body>
+<footer th:replace="fragments/footer"></footer>
+
 </html>

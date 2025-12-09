@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>Мои бронирования</h1>
+<div th:replace="fragments/navbar"></div>
 
 <!-- Сообщение об ошибке -->
 <div th:if="${errorMessage}" style="padding: 1rem; margin-bottom: 1rem; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px;">
@@ -62,10 +63,8 @@
         <small>Места вернутся в общее количество</small>
     </form>
 </div>
-
-<p>
-    <a th:href="@{/events/all}">Вернуться к афише</a> |
-    <a th:href="@{/}">На главную</a>
-</p>
 </body>
+
+<footer th:replace="fragments/footer"></footer>
+
 </html>

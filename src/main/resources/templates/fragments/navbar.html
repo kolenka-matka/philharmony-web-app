@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<nav>
+    <a th:href="@{/}">ВайбБит</a>
+    <a th:href="@{/events/all}">Афиша</a>
+
+    <span th:if="${#authorization.expression('isAuthenticated()')}">
+         <span th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+            <a th:href="@{/bookings/my}">Мои бронирования</a> |
+        </span>
+        <a th:href="@{/users/profile}">Профиль</a>
+        <form th:action="@{users/logout}" method="post" style="display: inline;">
+            <button type="submit">Выйти</button>
+        </form>
+    </span>
+
+    <span th:unless="${#authorization.expression('isAuthenticated()')}">
+        <a th:href="@{/login}">Войти</a> /
+        <a th:href="@{/register}">Регистрация</a>
+    </span>
+</nav>
+</body>
+</html>
