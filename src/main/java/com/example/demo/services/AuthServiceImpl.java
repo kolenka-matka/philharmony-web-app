@@ -3,9 +3,9 @@ package com.example.demo.services;
 import com.example.demo.dto.UserRegistrationDto;
 import com.example.demo.models.entities.User;
 import com.example.demo.models.enums.UserRoles;
+import com.example.demo.models.exceptions.UserNotFoundException;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.repositories.UserRoleRepository;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,6 +55,6 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public User getUser(String username) {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(username + " was not found!"));
+                .orElseThrow(() -> new UserNotFoundException("Пользователь '" + username + "' не найден"));
     }
 }

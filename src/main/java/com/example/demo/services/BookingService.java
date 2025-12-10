@@ -5,6 +5,9 @@ import com.example.demo.dto.BookingViewDto;
 import com.example.demo.models.entities.Booking;
 import com.example.demo.models.entities.Event;
 import com.example.demo.models.entities.User;
+import com.example.demo.models.exceptions.BookingNotFoundException;
+import com.example.demo.models.exceptions.EventNotFoundException;
+import com.example.demo.models.exceptions.UserNotFoundException;
 import com.example.demo.repositories.BookingRepository;
 import com.example.demo.repositories.EventRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -34,30 +37,28 @@ public class BookingService {
         log.info("Создание бронирования для мероприятия {} пользователем {}",
                 eventTitle, principal.getName());
 
-        // Получаем пользователя
-        User user = authService.getUser(principal.getName());
+        User user;
+        try {
+            user = authService.getUser(principal.getName());
+        } catch (Exception e) {
+            throw new UserNotFoundException("Пользователь '" + principal.getName() + "' не найден");
+        }
 
-        // Получаем мероприятие по названию (title)
         Event event = eventRepository.findByTitle(eventTitle)
-                .orElseThrow(() -> new RuntimeException("Мероприятие не найдено"));
+                .orElseThrow(() -> new EventNotFoundException("Мероприятие '" + eventTitle + "' не найдено"));
 
-        // Проверяем доступность мест
         if (event.getAvailableSeats() < bookingCreateDto.getSeatsCount()) {
-            throw new RuntimeException("Недостаточно свободных мест. Доступно: " +
-                    event.getAvailableSeats());
+            throw new IllegalArgumentException("Недостаточно свободных мест. Доступно: " + event.getAvailableSeats());
         }
 
-        // Проверяем, что не бронирует больше 10 мест за раз
         if (bookingCreateDto.getSeatsCount() > 10) {
-            throw new RuntimeException("Максимальное количество мест для одного бронирования - 10");
+            throw new IllegalArgumentException("Максимальное количество мест для одного бронирования - 10");
         }
 
-        // Создаем бронирование
         Booking booking = new Booking();
         booking.setUser(user);
         booking.setEvent(event);
 
-        // Если комментарий пустой или null, устанавливаем дефолтное значение
         if (bookingCreateDto.getComment() == null || bookingCreateDto.getComment().trim().isEmpty()) {
             booking.setComment("Без комментария");
         } else {
@@ -66,10 +67,8 @@ public class BookingService {
 
         booking.setSeatsCount(bookingCreateDto.getSeatsCount());
 
-        // Обновляем количество свободных мест
         event.setAvailableSeats(event.getAvailableSeats() - bookingCreateDto.getSeatsCount());
 
-        // Сохраняем
         bookingRepository.save(booking);
         eventRepository.save(event);
 
@@ -79,7 +78,12 @@ public class BookingService {
 
     @Transactional(readOnly = true)
     public List<BookingViewDto> getUserBookings(Principal principal) {
-        User user = authService.getUser(principal.getName());
+        User user;
+        try {
+            user = authService.getUser(principal.getName());
+        } catch (Exception e) {
+            throw new UserNotFoundException("Пользователь '" + principal.getName() + "' не найден");
+        }
 
         return bookingRepository.findByUserOrderByCreatedAtDesc(user)
                 .stream()
@@ -89,14 +93,18 @@ public class BookingService {
 
     @Transactional(readOnly = true)
     public BookingViewDto getBookingById(String id, Principal principal) {
-        User user = authService.getUser(principal.getName());
+        User user;
+        try {
+            user = authService.getUser(principal.getName());
+        } catch (Exception e) {
+            throw new UserNotFoundException("Пользователь '" + principal.getName() + "' не найден");
+        }
 
         Booking booking = bookingRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Бронирование не найдено"));
+                .orElseThrow(() -> new BookingNotFoundException("Бронирование с ID '" + id + "' не найдено"));
 
-        // Проверяем, что бронирование принадлежит пользователю
         if (!booking.getUser().getId().equals(user.getId())) {
-            throw new RuntimeException("Доступ запрещен");
+            throw new IllegalArgumentException("Доступ запрещен");
         }
 
         return mapToBookingViewDto(booking);
@@ -120,22 +128,24 @@ public class BookingService {
     public void cancelBooking(String bookingId, Principal principal) {
         log.info("Отмена бронирования {} пользователем {}", bookingId, principal.getName());
 
-        User user = authService.getUser(principal.getName());
+        User user;
+        try {
+            user = authService.getUser(principal.getName());
+        } catch (Exception e) {
+            throw new UserNotFoundException("Пользователь '" + principal.getName() + "' не найден");
+        }
 
         Booking booking = bookingRepository.findById(bookingId)
-                .orElseThrow(() -> new RuntimeException("Бронирование не найдено"));
+                .orElseThrow(() -> new BookingNotFoundException("Бронирование с ID '" + bookingId + "' не найдено"));
 
-        // Проверяем, что бронирование принадлежит пользователю
         if (!booking.getUser().getId().equals(user.getId())) {
-            throw new RuntimeException("Доступ запрещен");
+            throw new IllegalArgumentException("Вы не можете отменить чужое бронирование");
         }
 
         Event event = booking.getEvent();
 
-        // Возвращаем места
         event.setAvailableSeats(event.getAvailableSeats() + booking.getSeatsCount());
 
-        // Удаляем бронирование
         bookingRepository.delete(booking);
         eventRepository.save(event);
 

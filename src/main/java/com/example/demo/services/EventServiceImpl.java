@@ -8,6 +8,7 @@ import com.example.demo.models.entities.Event;
 import com.example.demo.models.entities.Genre;
 import com.example.demo.models.entities.Hall;
 import com.example.demo.models.enums.EventType;
+import com.example.demo.models.exceptions.EventNotFoundException;
 import com.example.demo.repositories.EventRepository;
 import com.example.demo.repositories.GenreRepository;
 import com.example.demo.repositories.HallRepository;
@@ -106,7 +107,7 @@ public class EventServiceImpl implements EventService {
     public ShowDetailedEventInfoDto eventDetails(String eventTitle) {
         log.debug("Получение деталей мероприятия: {}", eventTitle);
         Event event = eventRepository.findByTitle(eventTitle)
-                .orElseThrow(() -> new IllegalArgumentException("Мероприятие не найдено: " + eventTitle));
+                .orElseThrow(() -> new EventNotFoundException("Мероприятие '" + eventTitle + "' не найдено"));
 
         return toShowDetailedEventInfoDto(event);
     }
@@ -164,7 +165,7 @@ public class EventServiceImpl implements EventService {
     @CacheEvict(cacheNames = "event", allEntries = true)
     public void deleteEvent(String eventTitle) {
         Event event = eventRepository.findByTitle(eventTitle)
-                .orElseThrow(() -> new IllegalArgumentException("Мероприятие не найдено"));
+                .orElseThrow(() -> new EventNotFoundException("Мероприятие '" + eventTitle + "' не найдено"));
 
         try {
             eventRepository.delete(event);
@@ -227,7 +228,7 @@ public class EventServiceImpl implements EventService {
 
         for (Object[] result : results) {
             Event event = (Event) result[0];
-            Long totalSeats = (Long) result[1]; // SUM возвращает Long
+            Long totalSeats = (Long) result[1];
 
             TopEventDto dto = new TopEventDto(
                     event.getTitle(),
