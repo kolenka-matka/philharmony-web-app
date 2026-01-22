@@ -16,28 +16,28 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface EventRepository extends JpaRepository<Event, String>, JpaSpecificationExecutor<Event> {
+public interface EventRepository extends JpaRepository<Event, String>,
+        JpaSpecificationExecutor<Event> {
 
-    // Старые методы остаются для совместимости
-    List<Event> findByDateTimeAfter(LocalDateTime dateTime);
-    List<Event> findByEventTypeAndDateTimeAfter(EventType eventType, LocalDateTime dateTime);
     List<Event> findByEventType(EventType eventType);
     List<Event> findByTitleContainingIgnoreCase(String title);
-    List<Event> findByEventTypeAndTitleContainingIgnoreCase(EventType eventType, String title);
-    List<Event> findByDateTimeBefore(LocalDateTime dateTime);
-    List<Event> findByAvailableSeatsGreaterThan(Integer minSeats);
     Optional<Event> findByTitle(String title);
     boolean existsByTitle(String title);
     void deleteByTitle(String title);
 
-    // Метод для комбинированных фильтров через спецификации
-    Page<Event> findAll(Specification<Event> spec, Pageable pageable);
+    // методы спецификаций
+    @Override
     List<Event> findAll(Specification<Event> spec);
+    @Override
+    Page<Event> findAll(Specification<Event> spec, Pageable pageable);
 
-    @Query("SELECT e, COALESCE(SUM(b.seatsCount), 0) as totalSeats " +
-            "FROM Event e " +
-            "LEFT JOIN Booking b ON e.id = b.event.id " +
-            "GROUP BY e.id " +
-            "ORDER BY totalSeats DESC")
+    // аналитика
+    @Query("""
+        SELECT e, COALESCE(SUM(b.seatsCount), 0)
+        FROM Event e
+        LEFT JOIN Booking b ON e.id = b.event.id
+        GROUP BY e.id
+        ORDER BY COALESCE(SUM(b.seatsCount), 0) DESC
+    """)
     List<Object[]> findTopEventsByBookings(Pageable pageable);
 }

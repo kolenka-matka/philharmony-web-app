@@ -31,7 +31,6 @@ public class BookingController {
     public BookingCreateDto initForm(Principal principal) {
         BookingCreateDto dto = new BookingCreateDto();
 
-        // Автоматически заполняем данные пользователя, если он авторизован
         if (principal != null) {
             try {
                 var user = authService.getUser(principal.getName());
@@ -45,7 +44,6 @@ public class BookingController {
         return dto;
     }
 
-    // Форма для создания бронирования
     @GetMapping("/create/{title}")
     @PreAuthorize("isAuthenticated()")
     public String showBookingForm(@PathVariable String title,
@@ -73,7 +71,6 @@ public class BookingController {
         return "booking-create";
     }
 
-    // Создание бронирования
     @PostMapping("/create/{title}")
     @PreAuthorize("isAuthenticated()")
     public String createBooking(@PathVariable String title,
@@ -109,7 +106,6 @@ public class BookingController {
         }
     }
 
-    // Просмотр всех бронирований пользователя
     @GetMapping("/my")
     @PreAuthorize("isAuthenticated()")
     public String myBookings(Model model, Principal principal) {
@@ -126,7 +122,6 @@ public class BookingController {
         return "booking-list";
     }
 
-    // Отмена бронирования
     @PostMapping("/cancel/{bookingId}")
     @PreAuthorize("isAuthenticated()")
     public String cancelBooking(@PathVariable String bookingId,

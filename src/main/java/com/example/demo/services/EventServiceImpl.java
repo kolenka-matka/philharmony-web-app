@@ -33,7 +33,6 @@ import java.util.stream.Collectors;
 @Service
 @Transactional(readOnly = true)
 public class EventServiceImpl implements EventService {
-
     private final EventRepository eventRepository;
     private final HallRepository hallRepository;
     private final GenreRepository genreRepository;
@@ -85,8 +84,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<ShowEventInfoDto> findByGenreId(String genreId) {
-        Specification<Event> spec = EventSpecification.hasGenreId(genreId);
-        return eventRepository.findAll(spec)
+        return eventRepository.findAll(EventSpecification.hasGenreId(genreId))
                 .stream()
                 .map(this::toShowEventInfoDto)
                 .collect(Collectors.toList());
@@ -95,8 +93,7 @@ public class EventServiceImpl implements EventService {
     @Override
     @Cacheable(value = "events", key = "'genre_' + #genreName")
     public List<ShowEventInfoDto> findByGenreName(String genreName) {
-        Specification<Event> spec = EventSpecification.hasGenreName(genreName);
-        return eventRepository.findAll(spec)
+        return eventRepository.findAll(EventSpecification.hasGenreName(genreName))
                 .stream()
                 .map(this::toShowEventInfoDto)
                 .collect(Collectors.toList());
@@ -106,31 +103,38 @@ public class EventServiceImpl implements EventService {
     @Cacheable(value = "event", key = "#eventTitle", unless = "#result == null")
     public ShowDetailedEventInfoDto eventDetails(String eventTitle) {
         log.debug("Получение деталей мероприятия: {}", eventTitle);
+
         Event event = eventRepository.findByTitle(eventTitle)
-                .orElseThrow(() -> new EventNotFoundException("Мероприятие '" + eventTitle + "' не найдено"));
+                .orElseThrow(() ->
+                        new EventNotFoundException("Мероприятие '" + eventTitle + "' не найдено")
+                );
 
         return toShowDetailedEventInfoDto(event);
     }
 
     @Override
-    public List<ShowEventInfoDto> findEventsWithFilters(String search, EventType type, String genreName) {
-        Specification<Event> spec = Specification.where(EventSpecification.hasTitleContaining(search))
-                .and(EventSpecification.hasEventType(type))
-                .and(EventSpecification.hasGenreName(genreName));
-
-        return eventRepository.findAll(spec)
+    public List<ShowEventInfoDto> findEventsWithFilters(
+            String search,
+            EventType type,
+            String genreName
+    ) {
+        return eventRepository.findAll(buildFilterSpec(search, type, genreName))
                 .stream()
                 .map(this::toShowEventInfoDto)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Page<ShowEventInfoDto> findEventsWithFiltersPaginated(String search, EventType type, String genreName, Pageable pageable) {
-        Specification<Event> spec = Specification.where(EventSpecification.hasTitleContaining(search))
-                .and(EventSpecification.hasEventType(type))
-                .and(EventSpecification.hasGenreName(genreName));
-
-        return eventRepository.findAll(spec, pageable)
+    public Page<ShowEventInfoDto> findEventsWithFiltersPaginated(
+            String search,
+            EventType type,
+            String genreName,
+            Pageable pageable
+    ) {
+        return eventRepository.findAll(
+                        buildFilterSpec(search, type, genreName),
+                        pageable
+                )
                 .map(this::toShowEventInfoDto);
     }
 
@@ -138,19 +142,12 @@ public class EventServiceImpl implements EventService {
     @Transactional
     @CacheEvict(cacheNames = "event", allEntries = true)
     public void addEvent(AddEventDto dto) {
-        Event event = new Event();
-        event.setTitle(dto.getTitle());
-        event.setDescription(dto.getDescription());
-        event.setDateTime(dto.getDateTime());
-        event.setEventType(dto.getEventType());
-        event.setImageUrl(dto.getImageUrl());
-        event.setAvailableSeats(dto.getAvailableSeats());
-
+        Event event = mapper.map(dto, Event.class);
         Hall hall = hallRepository.findById(String.valueOf(dto.getHallId()))
                 .orElseThrow(() -> new IllegalArgumentException("Зал не найден"));
         event.setHall(hall);
 
-        if (dto.getGenreId() != null && !dto.getGenreId().isEmpty()) {
+        if (dto.getGenreId() != null && !dto.getGenreId().isBlank()) {
             Genre genre = genreRepository.findById(dto.getGenreId())
                     .orElseThrow(() -> new IllegalArgumentException("Жанр не найден"));
             event.setGenre(genre);
@@ -165,34 +162,34 @@ public class EventServiceImpl implements EventService {
     @CacheEvict(cacheNames = "event", allEntries = true)
     public void deleteEvent(String eventTitle) {
         Event event = eventRepository.findByTitle(eventTitle)
-                .orElseThrow(() -> new EventNotFoundException("Мероприятие '" + eventTitle + "' не найдено"));
+                .orElseThrow(() ->
+                        new EventNotFoundException("Мероприятие '" + eventTitle + "' не найдено")
+                );
 
         try {
             eventRepository.delete(event);
-            log.info("Мероприятие '{}' удалено", eventTitle);
         } catch (DataIntegrityViolationException ex) {
             throw new IllegalArgumentException(
-                    "Нельзя удалить мероприятие '" + eventTitle +
-                            "'. Есть связанные бронирования. Сначала удалите их."
+                    "Нельзя удалить мероприятие. Есть связанные бронирования."
             );
         }
     }
 
+    private Specification<Event> buildFilterSpec(
+            String search,
+            EventType type,
+            String genreName
+    ) {
+        return Specification
+                .where(EventSpecification.titleContains(search))
+                .and(EventSpecification.hasType(type))
+                .and(EventSpecification.hasGenreName(genreName));
+    }
+
     private ShowEventInfoDto toShowEventInfoDto(Event event) {
         ShowEventInfoDto dto = mapper.map(event, ShowEventInfoDto.class);
-
-        if (event.getHall() != null) {
-            dto.setHallName(event.getHall().getName());
-        } else {
-            dto.setHallName("Не указан");
-        }
-
-        if (event.getGenre() != null) {
-            dto.setGenreName(event.getGenre().getName());
-        } else {
-            dto.setGenreName("Не указан");
-        }
-
+        dto.setHallName(event.getHall() != null ? event.getHall().getName() : "Не указан");
+        dto.setGenreName(event.getGenre() != null ? event.getGenre().getName() : "Не указан");
         return dto;
     }
 
@@ -209,15 +206,12 @@ public class EventServiceImpl implements EventService {
             dto.setCapacity(0);
         }
 
-        if (event.getGenre() != null) {
-            dto.setGenreName(event.getGenre().getName());
-        } else {
-            dto.setGenreName("Не указан");
-        }
+        dto.setGenreName(event.getGenre() != null
+                ? event.getGenre().getName()
+                : "Не указан");
 
         return dto;
     }
-
     @Override
     public List<TopEventDto> getTopEventsByBookings(int limit) {
         Pageable pageable = PageRequest.of(0, limit);
